@@ -20,8 +20,7 @@
             min-height: 100vh;
             margin: 0;
             color: #333;
-            padding: 20px;
-            overflow-x: hidden;
+            padding: 15px;
         }
 
         @keyframes gradientMove {
@@ -41,10 +40,15 @@
             border-top: 6px solid #f1c40f;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 30px);
         }
 
+        .conteudo-principal-container { flex: 1; }
+
         /* ===== TELA INICIAL ===== */
-        #tela-nome {
+        .tela-inicial {
             position: relative;
             padding: 30px 20px 40px;
             background: linear-gradient(160deg, #1e3c72 0%, #2a5298 60%, #4a69bd 100%);
@@ -54,7 +58,7 @@
             box-shadow: inset 0 0 60px rgba(0,0,0,0.3);
         }
 
-        #tela-nome::before {
+        .tela-inicial::before {
             content: "";
             position: absolute;
             inset: 0;
@@ -118,37 +122,56 @@
 
         .subtitulo .emoji-linha { display: inline-block; margin: 0 4px; }
 
-        #tela-nome p {
+        .tela-inicial p {
             position: relative;
             z-index: 1;
             color: #ecf0f1;
             font-size: 15px;
         }
 
-        #tela-nome input[type="text"] {
-            width: 75%;
-            max-width: 320px;
-            padding: 15px 20px;
-            margin: 10px 0 5px;
-            border: 2px solid rgba(241,196,15,0.4);
-            border-radius: 50px;
-            font-size: 16px;
-            text-align: center;
+        /* ===== FORMULÁRIOS ===== */
+        .form-group {
+            position: relative;
+            z-index: 1;
+            margin: 12px auto;
+            max-width: 350px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #d1d8e0;
+            margin-bottom: 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(241,196,15,0.3);
+            border-radius: 12px;
+            font-size: 15px;
             outline: none;
             transition: all 0.3s;
             background: rgba(255,255,255,0.95);
             font-family: 'Poppins', sans-serif;
-            position: relative;
-            z-index: 1;
+            color: #2c3e50;
         }
 
-        #tela-nome input[type="text"]:focus {
+        .form-group input:focus {
             border-color: #f1c40f;
-            box-shadow: 0 0 25px rgba(241, 196, 15, 0.5);
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
             transform: scale(1.02);
         }
 
-        #tela-nome button {
+        .form-group input::placeholder {
+            color: #bdc3c7;
+            font-size: 13px;
+        }
+
+        .tela-inicial button {
             position: relative;
             z-index: 1;
             background: linear-gradient(90deg, #f1c40f, #e67e22);
@@ -163,9 +186,152 @@
             text-transform: uppercase;
         }
 
-        #tela-nome button:hover {
+        .tela-inicial button:hover {
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 12px 30px rgba(241, 196, 15, 0.6);
+        }
+
+        .link-trocar {
+            display: inline-block;
+            color: #f1c40f;
+            font-size: 13px;
+            margin-top: 15px;
+            cursor: pointer;
+            text-decoration: underline;
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+        }
+
+        .link-trocar:hover { color: #e67e22; }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== MENSAGENS ===== */
+        .mensagem-auth {
+            position: relative;
+            z-index: 1;
+            margin: 12px auto;
+            max-width: 350px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            animation: fadeIn 0.3s;
+        }
+
+        .mensagem-auth.erro {
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+        }
+
+        .mensagem-auth.sucesso {
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+        }
+
+        .mensagem-auth.info {
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+        }
+
+        /* ===== CAIXA DE EMAIL SIMULADO ===== */
+        .caixa-email {
+            position: relative;
+            z-index: 1;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 420px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s;
+            border: 2px solid #3498db;
+        }
+
+        .caixa-email .email-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            border-bottom: 2px dashed #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .caixa-email .email-header .icone-email {
+            font-size: 32px;
+        }
+
+        .caixa-email .email-header .info-email {
+            flex: 1;
+            text-align: left;
+        }
+
+        .caixa-email .email-header .info-email .remetente {
+            font-weight: 800;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        .caixa-email .email-header .info-email .assunto {
+            font-size: 12px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .caixa-email .email-corpo {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .caixa-email .email-corpo p {
+            color: #555;
+            font-size: 13px;
+            margin: 8px 0;
+        }
+
+        .btn-link-email {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            font-weight: 800;
+            padding: 14px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .btn-link-email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5);
+        }
+
+        .info-link-aviso {
+            font-size: 11px;
+            color: #888;
+            font-style: italic;
+            text-align: center;
+            margin-top: 12px;
         }
 
         /* ===== BOTÕES ===== */
@@ -195,6 +361,7 @@
         button.warning { background-color: #e67e22; }
         button.danger { background-color: #e74c3c; }
         button.gold { background-color: #f1c40f; color: #333; }
+        button.purple { background-color: #9b59b6; }
         button.small { padding: 6px 12px; font-size: 12px; margin: 3px; }
         button.icon { 
             padding: 8px 12px; 
@@ -230,8 +397,8 @@
             border: 1px solid #e0e0e0;
         }
 
-        .top-bar h1 { margin: 0; font-size: 17px; }
-        .top-bar .botoes { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .top-bar h1 { margin: 0; font-size: 15px; }
+        .top-bar .botoes { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
 
         /* ===== MOEDAS ===== */
         .moedas-box {
@@ -243,13 +410,13 @@
             padding: 6px 14px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
             box-shadow: 0 4px 10px rgba(241, 196, 15, 0.4);
             border: 2px solid white;
         }
 
         .moedas-box .moeda-emoji {
-            font-size: 20px;
+            font-size: 18px;
             animation: girar 3s linear infinite;
         }
 
@@ -258,19 +425,172 @@
             100% { transform: rotateY(360deg); }
         }
 
-        .moedas-box.ganhou-moedas {
-            animation: pop 0.5s ease;
+        /* ===== PAINEL DE TURNOS ===== */
+        .painel-turnos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
-        @keyframes pop {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
+        .turno-card {
+            padding: 12px 8px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
+
+        .turno-card.ativo {
+            border-color: #2ecc71;
+            background: linear-gradient(135deg, #e8f8f5, #d1f2eb);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+            transform: scale(1.03);
+        }
+
+        .turno-card.fechado {
+            border-color: #bdc3c7;
+            background: #f8f9fa;
+            opacity: 0.7;
+        }
+
+        .turno-card.especial {
+            border-color: #9b59b6;
+            background: linear-gradient(135deg, #f8f5ff, #f0eaff);
+        }
+
+        .turno-card.especial.ativo {
+            border-color: #9b59b6;
+            background: linear-gradient(135deg, #f8f5ff, #e8dcff);
+            box-shadow: 0 6px 15px rgba(155, 89, 182, 0.4);
+        }
+
+        .turno-card .turno-nome {
+            font-size: 13px;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .turno-card .turno-horario {
+            font-size: 10px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .turno-card .turno-premios {
+            font-size: 9px;
+            color: #e67e22;
+            font-weight: 700;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
+        .turno-card.especial .turno-premios { color: #9b59b6; }
+
+        .turno-card .turno-status {
+            font-size: 10px;
+            margin-top: 5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .turno-card.ativo .turno-status { color: #27ae60; }
+        .turno-card.fechado .turno-status { color: #95a5a6; }
+
+        .turno-card .pulse-dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2ecc71;
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+            animation: pulseDot 1.5s infinite;
+        }
+
+        .turno-card.especial .pulse-dot { background: #9b59b6; }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        /* ===== CONTADOR DE APOSTAS ===== */
+        .contador-apostas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ecf0f1, #dfe6e9);
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #2c3e50;
+            border: 2px solid #bdc3c7;
+            flex-wrap: wrap;
+        }
+
+        .contador-apostas .numero-apostas {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 15px;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .contador-apostas.cheio {
+            background: linear-gradient(135deg, #fdedec, #fadbd8);
+            border-color: #e74c3c;
+            color: #c0392b;
+        }
+
+        .contador-apostas.cheio .numero-apostas { background: #e74c3c; }
+
+        /* ===== AVISO FECHADO ===== */
+        .aviso-fechado {
+            background: linear-gradient(135deg, #fef2f2, #fde8e8);
+            border: 2px dashed #e74c3c;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .aviso-fechado .icone {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .aviso-fechado h2 { color: #c0392b; margin: 5px 0; }
+        .aviso-fechado p { color: #7f3c3c; font-size: 14px; }
+
+        .aviso-fechado .info-dias {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 15px;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        .aviso-fechado .info-dias strong { color: #2c3e50; }
 
         /* ===== VITRINE ===== */
         .vitrine {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
             gap: 10px;
             margin: 20px 0;
             max-height: 480px;
@@ -321,7 +641,7 @@
         .bicho-card .emoji { font-size: 38px; line-height: 1; margin: 10px 0 5px 0; }
 
         .bicho-card .nome-bicho {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
             color: #2c3e50;
             text-transform: uppercase;
@@ -356,10 +676,12 @@
             gap: 12px;
             margin: 20px auto;
             max-width: 500px;
+            flex-wrap: wrap;
         }
 
         .opcao-btn {
             flex: 1;
+            min-width: 200px;
             padding: 15px;
             background: white;
             border: 3px solid #bdc3c7;
@@ -459,16 +781,16 @@
         }
 
         .milhar-manual input {
-            width: 200px;
+            width: 180px;
             padding: 14px;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
             text-align: center;
             border: 3px solid #e67e22;
             border-radius: 12px;
             outline: none;
             font-family: 'Poppins', monospace;
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             transition: all 0.3s;
             background: white;
             color: #2c3e50;
@@ -480,7 +802,7 @@
             transform: scale(1.03);
         }
 
-        .milhar-manual input::placeholder { color: #ccc; letter-spacing: 6px; }
+        .milhar-manual input::placeholder { color: #ccc; letter-spacing: 5px; }
 
         .milhar-manual button {
             background: linear-gradient(90deg, #e67e22, #f1c40f);
@@ -494,7 +816,6 @@
             margin: 0;
         }
 
-        /* ===== BOTÃO APOSTAR SEM MILHAR ===== */
         .btn-sem-milhar {
             background: linear-gradient(90deg, #9b59b6, #8e44ad);
             color: white;
@@ -530,11 +851,17 @@
             border-style: solid;
         }
 
-        /* ===== RESULTADO COM EMOJIS BONITOS ===== */
+        .card.pendente {
+            background: linear-gradient(135deg, #fff9e6, #fffdf5);
+            border-color: #f1c40f;
+            border-style: solid;
+        }
+
+        /* ===== RESULTADO ===== */
         .resultado-grid {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             align-items: center;
             margin: 20px 0;
             flex-wrap: wrap;
@@ -556,7 +883,7 @@
             flex-direction: column;
             align-items: center;
             background: white;
-            padding: 15px 25px;
+            padding: 15px 20px;
             border-radius: 20px;
             border: 3px solid #f1c40f;
             box-shadow: 0 8px 20px rgba(241, 196, 15, 0.25);
@@ -564,21 +891,21 @@
         }
 
         .bicho-sorteado-visual .emoji-grande {
-            font-size: 70px;
+            font-size: 60px;
             line-height: 1;
             animation: flutuar 2s ease-in-out infinite;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
         }
 
         .bicho-sorteado-visual .nome {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 800;
             color: #2c3e50;
             margin-top: 8px;
         }
 
         .bicho-sorteado-visual .numero {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 900;
             color: #e67e22;
             margin-top: 3px;
@@ -592,35 +919,36 @@
         }
 
         .numero-sorteado {
-            font-size: 40px;
+            font-size: 34px;
             font-weight: 900;
             color: #f1c40f;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            padding: 10px 20px;
+            padding: 10px 18px;
             background: #2c3e50;
             border-radius: 15px;
             display: inline-block;
-            min-width: 100px;
+            min-width: 90px;
             letter-spacing: 2px;
             animation: bichoPop 0.6s ease 0.2s backwards;
         }
 
         .numero-sorteado.milhar-grande {
-            font-size: 32px;
-            letter-spacing: 4px;
-            min-width: 180px;
+            font-size: 26px;
+            letter-spacing: 3px;
+            min-width: 150px;
         }
 
         .resultado-texto {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             margin: 20px 0 5px 0;
         }
 
         .ganhou .resultado-texto { color: #27ae60; }
         .perdeu .resultado-texto { color: #c0392b; }
+        .pendente .resultado-texto { color: #e67e22; }
 
-        /* ===== RECOMPENSA DE MOEDAS ===== */
+        /* ===== RECOMPENSA ===== */
         .recompensa-moedas {
             display: inline-flex;
             align-items: center;
@@ -636,10 +964,7 @@
             animation: recompensaPop 0.6s ease 0.4s backwards;
         }
 
-        .recompensa-moedas .emoji {
-            font-size: 24px;
-            animation: girar 2s linear infinite;
-        }
+        .recompensa-moedas .emoji { font-size: 24px; animation: girar 2s linear infinite; }
 
         @keyframes recompensaPop {
             0% { transform: scale(0); opacity: 0; }
@@ -647,7 +972,39 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* ===== CHUVA DE EMOJIS (VITÓRIA) ===== */
+        /* ===== AVISO AGUARDANDO ===== */
+        .aviso-aguardando {
+            background: linear-gradient(135deg, #fff9e6, #fffdf5);
+            border: 2px dashed #f1c40f;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin: 20px 0;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .aviso-aguardando .relogio {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 15px;
+            animation: girar 3s linear infinite;
+        }
+
+        .aviso-aguardando h2 { color: #e67e22; margin: 10px 0; }
+
+        .aviso-aguardando .horario-sorteio {
+            display: inline-block;
+            background: #2c3e50;
+            color: #f1c40f;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* ===== EMOJI CHUVA ===== */
         .emoji-chuva {
             position: fixed;
             top: -50px;
@@ -658,69 +1015,8 @@
         }
 
         @keyframes cair {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* ===== SORTEIO ANIMADO ===== */
-        .sorteio-animado {
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            border-radius: 16px;
-            color: white;
-            margin: 20px 0;
-        }
-
-        .sorteio-animado h2 {
-            color: #f1c40f;
-            margin-bottom: 20px;
-        }
-
-        .slot-machine {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .slot {
-            background: #1a252f;
-            border: 3px solid #f1c40f;
-            border-radius: 12px;
-            padding: 15px 25px;
-            font-size: 42px;
-            font-weight: 900;
-            color: #f1c40f;
-            font-family: 'Poppins', monospace;
-            min-width: 120px;
-            text-align: center;
-            letter-spacing: 3px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-            transition: all 0.1s;
-        }
-
-        .slot.milhar-slot {
-            font-size: 34px;
-            letter-spacing: 5px;
-            min-width: 200px;
-        }
-
-        .slot.rolling {
-            animation: shake 0.15s infinite;
-            color: #fff;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            75% { transform: translateX(3px); }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
         }
 
         /* ===== PAINEL DE APOSTAS ===== */
@@ -732,7 +1028,7 @@
             text-align: left;
             border: 2px solid #3498db;
             animation: fadeIn 0.4s;
-            max-height: 500px;
+            max-height: 600px;
             overflow-y: auto;
         }
 
@@ -748,6 +1044,42 @@
         }
 
         .painel-header h2 { margin: 0; color: #2c3e50; font-size: 20px; }
+
+        .abas {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            overflow-x: auto;
+        }
+
+        .aba {
+            padding: 10px 18px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 700;
+            color: #888;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            white-space: nowrap;
+        }
+
+        .aba:hover {
+            color: #2c3e50;
+            background: #f8f9fa;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .aba.ativa {
+            color: #2ecc71;
+            border-bottom-color: #2ecc71;
+        }
 
         .estatisticas {
             display: grid;
@@ -766,14 +1098,14 @@
         }
 
         .stat-card .valor {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             color: #2c3e50;
             display: block;
         }
 
         .stat-card .label {
-            font-size: 11px;
+            font-size: 10px;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -782,7 +1114,6 @@
 
         .stat-card.vitoria { border-bottom-color: #2ecc71; }
         .stat-card.derrota { border-bottom-color: #e74c3c; }
-        .stat-card.taxa   { border-bottom-color: #f1c40f; }
         .stat-card.moedas-stat { border-bottom-color: #f1c40f; background: #fff9e6; }
 
         .aposta-item {
@@ -803,6 +1134,7 @@
         .aposta-item:hover { transform: translateX(4px); }
         .aposta-item.ganhou { border-left-color: #2ecc71; background: #f0fdf4; }
         .aposta-item.perdeu { border-left-color: #e74c3c; background: #fef2f2; }
+        .aposta-item.pendente { border-left-color: #f1c40f; background: #fff9e6; }
 
         .aposta-info {
             display: flex;
@@ -824,7 +1156,7 @@
 
         .aposta-info .detalhes .badge {
             display: inline-block;
-            padding: 1px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: bold;
@@ -833,7 +1165,9 @@
 
         .badge-ganhou { background: #2ecc71; color: white; }
         .badge-perdeu { background: #e74c3c; color: white; }
+        .badge-pendente { background: #f1c40f; color: #333; }
         .badge-moedas { background: #f1c40f; color: #333; }
+        .badge-turno { background: #3498db; color: white; font-size: 10px; }
 
         .sem-apostas {
             text-align: center;
@@ -859,6 +1193,338 @@
             font-size: 13px;
         }
 
+        /* ===== HISTÓRICO DE SORTEIOS ===== */
+        .sorteio-registro {
+            background: white;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            border-left: 5px solid #9b59b6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+
+        .sorteio-registro:hover { transform: translateX(4px); }
+
+        .sorteio-registro .sorteio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .sorteio-registro .sorteio-turno {
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .sorteio-turno.manha { background: #f39c12; color: white; }
+        .sorteio-turno.tarde { background: #e67e22; color: white; }
+        .sorteio-turno.noite { background: #9b59b6; color: white; }
+
+        .sorteio-registro .sorteio-data {
+            font-size: 11px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .sorteio-registro .sorteio-resultado {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .sorteio-registro .sorteio-resultado .emoji-bicho { font-size: 32px; }
+
+        /* ===== RANKING ===== */
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+            border-left: 5px solid #bdc3c7;
+        }
+
+        .ranking-item:hover { transform: translateX(4px); }
+
+        .ranking-item.pos-1 { 
+            background: linear-gradient(135deg, #fff9e6, #fff4cc);
+            border-left-color: #f1c40f;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+        }
+        .ranking-item.pos-2 { 
+            background: linear-gradient(135deg, #f8f9fa, #ecf0f1);
+            border-left-color: #95a5a6;
+        }
+        .ranking-item.pos-3 { 
+            background: linear-gradient(135deg, #fdf5ec, #fae9d5);
+            border-left-color: #cd7f32;
+        }
+
+        .ranking-item.eu {
+            border: 2px solid #2ecc71;
+            background: linear-gradient(135deg, #e8f8f5, #d1f2eb);
+        }
+
+        .ranking-pos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2c3e50;
+            color: white;
+            font-weight: 900;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .ranking-item.pos-1 .ranking-pos { background: linear-gradient(135deg, #f1c40f, #e67e22); font-size: 20px; }
+        .ranking-item.pos-2 .ranking-pos { background: linear-gradient(135deg, #bdc3c7, #95a5a6); font-size: 18px; }
+        .ranking-item.pos-3 .ranking-pos { background: linear-gradient(135deg, #cd7f32, #a05a1f); font-size: 17px; }
+
+        .ranking-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .ranking-info .ranking-nick {
+            font-weight: 800;
+            color: #2c3e50;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .ranking-info .ranking-nick .voce-badge {
+            background: #2ecc71;
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .ranking-info .ranking-detalhes {
+            font-size: 11px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .ranking-moedas {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: linear-gradient(135deg, #f1c40f, #e67e22);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 15px;
+            box-shadow: 0 3px 8px rgba(241, 196, 15, 0.3);
+            white-space: nowrap;
+        }
+
+        .ranking-vazio {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-style: italic;
+        }
+
+        .ranking-vazio .icone {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        /* ===== TELA SOBRE ===== */
+        #tela-sobre {
+            background: linear-gradient(135deg, #f8f9fa, #ecf0f1);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: left;
+            border: 2px solid #3498db;
+            animation: fadeIn 0.4s;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #tela-sobre h2 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        #tela-sobre .subtitulo-sobre {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .sobre-secao {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border-left: 5px solid #3498db;
+        }
+
+        .sobre-secao.turno-manha { border-left-color: #f39c12; }
+        .sobre-secao.turno-tarde { border-left-color: #e67e22; }
+        .sobre-secao.turno-noite { border-left-color: #9b59b6; }
+        .sobre-secao.academico { 
+            border-left-color: #9b59b6; 
+            background: linear-gradient(135deg, #f8f5ff, #f0eaff);
+        }
+        .sobre-secao.dias { border-left-color: #2ecc71; }
+
+        .sobre-secao h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sobre-secao p {
+            margin: 6px 0;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .sobre-secao .info-linha {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 13px;
+        }
+
+        .sobre-secao .info-linha:last-child { border-bottom: none; }
+
+        .sobre-secao .info-linha .label-sobre {
+            color: #888;
+            font-weight: 600;
+        }
+
+        .sobre-secao .info-linha .valor-sobre {
+            color: #2c3e50;
+            font-weight: 800;
+            text-align: right;
+        }
+
+        .sobre-secao .valor-sobre.moedas { color: #e67e22; }
+        .sobre-secao .valor-sobre.tempo { color: #3498db; }
+
+        .tabela-premios {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tabela-premios th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 6px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tabela-premios td {
+            padding: 10px 6px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .tabela-premios tr:last-child td { border-bottom: none; }
+        .tabela-premios tr:nth-child(even) { background: #f8f9fa; }
+
+        .tabela-premios .valor-premio { color: #e67e22; font-weight: 800; }
+        .tabela-premios .valor-especial { color: #9b59b6; font-weight: 900; }
+
+        .aviso-academico {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 15px;
+            box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+        }
+
+        .aviso-academico .icone-grande {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .aviso-academico strong { font-weight: 800; }
+
+        .btn-voltar-sobre {
+            display: block;
+            margin: 20px auto 0;
+            background: #3498db;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== RODAPÉ ===== */
+        .rodape {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            font-size: 13px;
+            color: #7f8c8d;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .rodape .marca {
+            background: linear-gradient(90deg, #f1c40f, #e67e22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            font-size: 15px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -870,159 +1536,593 @@
         }
 
         .pulse { animation: pulse 1s infinite; }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 640px) {
+            body { padding: 10px; }
+            
+            .container {
+                padding: 15px;
+                border-radius: 16px;
+                min-height: calc(100vh - 20px);
+            }
+
+            .titulo-principal { font-size: 32px; letter-spacing: 1px; }
+            .subtitulo { font-size: 12px; margin-bottom: 20px; }
+
+            .tela-inicial { padding: 20px 15px 30px; }
+            .form-group input { padding: 12px 15px; font-size: 14px; }
+            .tela-inicial button { padding: 13px 30px; font-size: 14px; }
+
+            .top-bar {
+                padding: 10px;
+                gap: 6px;
+                justify-content: center;
+            }
+            .top-bar h1 { font-size: 12px; width: 100%; text-align: center; }
+            .top-bar .botoes { justify-content: center; width: 100%; }
+            .moedas-box { font-size: 13px; padding: 5px 10px; }
+            button.small { padding: 5px 8px; font-size: 10px; }
+            button.icon { width: 34px; height: 34px; font-size: 14px; }
+
+            h1 { font-size: 20px; }
+            h2 { font-size: 15px; }
+            p { font-size: 13px; }
+
+            .painel-turnos { gap: 5px; }
+            .turno-card { padding: 7px 3px; border-radius: 10px; }
+            .turno-card .turno-nome { font-size: 10px; }
+            .turno-card .turno-horario { font-size: 8px; }
+            .turno-card .turno-premios { font-size: 7px; }
+            .turno-card .turno-status { font-size: 8px; }
+
+            .contador-apostas { font-size: 12px; padding: 8px 10px; }
+            .contador-apostas .numero-apostas { font-size: 13px; padding: 2px 10px; }
+
+            .vitrine {
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+                gap: 6px;
+                padding: 8px;
+                max-height: 400px;
+            }
+            .bicho-card { padding: 7px 3px; border-radius: 10px; }
+            .bicho-card .emoji { font-size: 28px; margin: 5px 0 3px 0; }
+            .bicho-card .nome-bicho { font-size: 8px; }
+            .bicho-card .numero-badge { font-size: 9px; padding: 2px 4px; }
+
+            .opcao-aposta { flex-direction: column; gap: 8px; }
+            .opcao-btn { min-width: auto; padding: 12px; font-size: 13px; }
+
+            .milhar-manual { padding: 22px 15px; margin: 15px auto; }
+            .milhar-manual input { width: 140px; font-size: 20px; letter-spacing: 4px; }
+            .milhar-manual button { padding: 12px 20px; font-size: 13px; }
+
+            .resultado-grid { gap: 15px; }
+            .bicho-sorteado-visual .emoji-grande { font-size: 50px; }
+            .numero-sorteado { font-size: 26px; padding: 8px 15px; }
+            .numero-sorteado.milhar-grande { font-size: 20px; }
+
+            .painel-apostas { padding: 15px; }
+            .estatisticas { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .stat-card .valor { font-size: 18px; }
+
+            .rodape { font-size: 11px; margin-top: 20px; }
+            .rodape .marca { font-size: 13px; }
+
+            #tela-sobre { padding: 18px; }
+            #tela-sobre h2 { font-size: 20px; }
+            .sobre-secao { padding: 14px; }
+            .sobre-secao h3 { font-size: 14px; }
+            .sobre-secao p { font-size: 12px; }
+            .tabela-premios { font-size: 11px; }
+            .tabela-premios th { font-size: 9px; padding: 8px 3px; }
+            .tabela-premios td { padding: 8px 3px; }
+            .aviso-academico { font-size: 12px; padding: 14px; }
+
+            .ranking-item { padding: 10px; gap: 8px; }
+            .ranking-pos { width: 34px; height: 34px; font-size: 14px; }
+            .ranking-item.pos-1 .ranking-pos { font-size: 17px; }
+            .ranking-info .ranking-nick { font-size: 13px; }
+            .ranking-info .ranking-detalhes { font-size: 10px; }
+            .ranking-moedas { font-size: 13px; padding: 5px 10px; }
+
+            .caixa-email { padding: 15px; margin: 15px auto; }
+            .caixa-email .email-header .icone-email { font-size: 26px; }
+            .caixa-email .email-header .info-email .remetente { font-size: 12px; }
+            .caixa-email .email-header .info-email .assunto { font-size: 11px; }
+            .caixa-email .email-corpo { font-size: 12px; }
+            .btn-link-email { font-size: 13px; padding: 12px 15px; }
+        }
+
+        @media (max-width: 380px) {
+            .titulo-principal { font-size: 26px; }
+            .vitrine { grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); }
+            .bicho-card .emoji { font-size: 24px; }
+            .bicho-card .nome-bicho { font-size: 8px; }
+            .ranking-info .ranking-nick { font-size: 12px; }
+            .ranking-moedas { font-size: 12px; padding: 4px 8px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- ===== TELA 1: NOME ===== -->
-        <div id="tela-nome">
-            <span class="emoji-flutuante">🦁</span>
-            <span class="emoji-flutuante">🐯</span>
-            <span class="emoji-flutuante">🐘</span>
-            <span class="emoji-flutuante">🦅</span>
-            <span class="emoji-flutuante">🐍</span>
-            <span class="emoji-flutuante">🦋</span>
+        <div class="conteudo-principal-container">
+            <!-- ===== TELA 1: LOGIN ===== -->
+            <div id="tela-login" class="tela-inicial">
+                <span class="emoji-flutuante">🦁</span>
+                <span class="emoji-flutuante">🐯</span>
+                <span class="emoji-flutuante">🐘</span>
+                <span class="emoji-flutuante">🦅</span>
+                <span class="emoji-flutuante">🐍</span>
+                <span class="emoji-flutuante">🦋</span>
 
-            <h1 class="titulo-principal">Animal Game</h1>
-            <p class="subtitulo">
-                <span class="emoji-linha">🎲</span>
-                Escolha • Aposte • Sorteie
-                <span class="emoji-linha">🍀</span>
-            </p>
-            
-            <p>Digite seu nome para começar:</p>
-            <input type="text" id="input-nome" placeholder="Seu nome" autocomplete="off">
-            <br>
-            <button onclick="salvarNome()">Começar 🎲</button>
-        </div>
+                <h1 class="titulo-principal">Animal Game</h1>
+                <p class="subtitulo">
+                    <span class="emoji-linha">🎲</span>
+                    Escolha • Aposte • Sorteie
+                    <span class="emoji-linha">🍀</span>
+                </p>
 
-        <!-- ===== TELA 2: JOGO ===== -->
-        <div id="tela-jogo" class="hidden">
-            <div class="top-bar">
-                <h1 id="saudacao"></h1>
-                <div class="botoes">
-                    <div class="moedas-box" id="moedas-box">
-                        <span class="moeda-emoji">🪙</span>
-                        <span id="moedas-total">0</span>
-                    </div>
-                    <button class="icon" id="btn-som" onclick="toggleSom()" title="Ligar/Desligar som">🔊</button>
-                    <button class="secondary small" onclick="mostrarPainelApostas()">📋 Minhas Apostas</button>
+                <h2 style="color: white; position: relative; z-index: 1;">🔐 Entrar</h2>
+                
+                <div id="mensagem-login" class="mensagem-auth hidden"></div>
+
+                <div class="form-group">
+                    <label>👤 Nickname</label>
+                    <input type="text" id="login-nickname" placeholder="Seu nickname" maxlength="20" autocomplete="username">
                 </div>
+                <div class="form-group">
+                    <label>🔑 Senha (8 números)</label>
+                    <input type="password" id="login-senha" placeholder="00000000" maxlength="8" inputmode="numeric" autocomplete="current-password">
+                </div>
+
+                <button onclick="fazerLogin()">Entrar 🔓</button>
+                <br>
+                
+                <div class="links-container">
+                    <span class="link-trocar" onclick="mostrarRegistro()">Não tem conta? Cadastre-se</span>
+                    <span class="link-trocar" onclick="mostrarRecuperarSenha()">🔑 Esqueci minha senha</span>
+                </div>
+                <br>
+                <button class="btn-sobre-inicial" onclick="mostrarSobre()">ℹ️ Sobre o Jogo</button>
+                <br>
+                <button class="btn-sobre-inicial" onclick="mostrarRankingLogin()">🏆 Ver Ranking</button>
             </div>
 
-            <!-- PAINEL DE APOSTAS -->
-            <div id="painel-apostas" class="painel-apostas hidden">
+            <!-- ===== TELA 2: REGISTRO ===== -->
+            <div id="tela-registro" class="tela-inicial hidden">
+                <span class="emoji-flutuante">🦁</span>
+                <span class="emoji-flutuante">🐯</span>
+                <span class="emoji-flutuante">🐘</span>
+                <span class="emoji-flutuante">🦅</span>
+                <span class="emoji-flutuante">🐍</span>
+                <span class="emoji-flutuante">🦋</span>
+
+                <h1 class="titulo-principal">Animal Game</h1>
+                <p class="subtitulo">
+                    <span class="emoji-linha">✨</span>
+                    Crie sua conta
+                    <span class="emoji-linha">✨</span>
+                </p>
+
+                <h2 style="color: white; position: relative; z-index: 1;">📝 Cadastro</h2>
+                
+                <div id="mensagem-registro" class="mensagem-auth hidden"></div>
+
+                <div class="form-group">
+                    <label>👤 Nickname (único, 2 a 20 caracteres)</label>
+                    <input type="text" id="registro-nickname" placeholder="Seu apelido" maxlength="20" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>📧 E-mail real (Gmail, Outlook, Hotmail...)</label>
+                    <input type="email" id="registro-email" placeholder="seu@email.com" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label>🔑 Senha (exatamente 8 números)</label>
+                    <input type="password" id="registro-senha" placeholder="00000000" maxlength="8" inputmode="numeric" autocomplete="new-password">
+                </div>
+
+                <button onclick="fazerRegistro()">Cadastrar ✅</button>
+                <br>
+                <span class="link-trocar" onclick="mostrarLogin()">Já tem conta? Faça login</span>
+                <br>
+                <button class="btn-sobre-inicial" onclick="mostrarSobre()">ℹ️ Sobre o Jogo</button>
+            </div>
+
+            <!-- ===== TELA RECUPERAR SENHA (SÓ EMAIL) ===== -->
+            <div id="tela-recuperar" class="tela-inicial hidden">
+                <span class="emoji-flutuante">🦁</span>
+                <span class="emoji-flutuante">🐯</span>
+                <span class="emoji-flutuante">🐘</span>
+                <span class="emoji-flutuante">🦅</span>
+                <span class="emoji-flutuante">🐍</span>
+                <span class="emoji-flutuante">🦋</span>
+
+                <h1 class="titulo-principal">Animal Game</h1>
+                <p class="subtitulo">
+                    <span class="emoji-linha">🔑</span>
+                    Recuperar Senha
+                    <span class="emoji-linha">🔑</span>
+                </p>
+
+                <h2 style="color: white; position: relative; z-index: 1;">🔄 Redefinir Senha</h2>
+                
+                <div id="mensagem-recuperar" class="mensagem-auth hidden"></div>
+
+                <p style="position: relative; z-index: 1; font-size: 13px; color: #d1d8e0;">
+                    Digite o e-mail cadastrado na sua conta.<br>
+                    Enviaremos um link para redefinir sua senha.
+                </p>
+
+                <div class="form-group">
+                    <label>📧 E-mail cadastrado</label>
+                    <input type="email" id="recuperar-email" placeholder="seu@email.com" autocomplete="email">
+                </div>
+
+                <button class="warning" onclick="enviarLinkRecuperacao()">Enviar Link 📧</button>
+                <br>
+                <span class="link-trocar" onclick="mostrarLogin()">⬅ Voltar ao Login</span>
+            </div>
+
+            <!-- ===== TELA 3: "EMAIL RECEBIDO" (LINK SIMULADO) ===== -->
+            <div id="tela-link-email" class="tela-inicial hidden">
+                <span class="emoji-flutuante">🦁</span>
+                <span class="emoji-flutuante">🐯</span>
+                <span class="emoji-flutuante">🐘</span>
+                <span class="emoji-flutuante">🦅</span>
+                <span class="emoji-flutuante">🐍</span>
+                <span class="emoji-flutuante">🦋</span>
+
+                <h1 class="titulo-principal">Animal Game</h1>
+                <p class="subtitulo">
+                    <span class="emoji-linha">📬</span>
+                    Verifique seu e-mail
+                    <span class="emoji-linha">📬</span>
+                </p>
+
+                <div id="mensagem-link" class="mensagem-auth info hidden"></div>
+
+                <div class="caixa-email">
+                    <div class="email-header">
+                        <span class="icone-email">📧</span>
+                        <div class="info-email">
+                            <div class="remetente">Animal Game</div>
+                            <div class="assunto" id="email-destinatario">Para: --</div>
+                        </div>
+                    </div>
+
+                    <div class="email-corpo">
+                        <p><strong>Olá!</strong></p>
+                        <p>Recebemos uma solicitação para redefinir a senha da sua conta no <strong>Animal Game</strong>.</p>
+                        <p>Clique no botão abaixo para criar uma nova senha:</p>
+                    </div>
+
+                    <button class="btn-link-email" onclick="abrirNovaSenha()">
+                        🔓 Redefinir Minha Senha
+                    </button>
+
+                    <p class="info-link-aviso">
+                        ⚠️ Se você não solicitou, ignore este e-mail.
+                    </p>
+                </div>
+
+                <span class="link-trocar" onclick="mostrarLogin()">⬅ Voltar ao Login</span>
+            </div>
+
+            <!-- ===== TELA NOVA SENHA ===== -->
+            <div id="tela-nova-senha" class="tela-inicial hidden">
+                <span class="emoji-flutuante">🦁</span>
+                <span class="emoji-flutuante">🐯</span>
+                <span class="emoji-flutuante">🐘</span>
+                <span class="emoji-flutuante">🦅</span>
+                <span class="emoji-flutuante">🐍</span>
+                <span class="emoji-flutuante">🦋</span>
+
+                <h1 class="titulo-principal">Animal Game</h1>
+                <p class="subtitulo">
+                    <span class="emoji-linha">✨</span>
+                    Crie uma nova senha
+                    <span class="emoji-linha">✨</span>
+                </p>
+
+                <h2 style="color: white; position: relative; z-index: 1;">🔐 Nova Senha</h2>
+                
+                <div id="mensagem-nova-senha" class="mensagem-auth hidden"></div>
+
+                <p style="position: relative; z-index: 1; font-size: 13px; color: #d1d8e0;" id="texto-nova-senha">
+                    Digite sua nova senha abaixo.
+                </p>
+
+                <div class="form-group">
+                    <label>🔑 Nova Senha (exatamente 8 números)</label>
+                    <input type="password" id="nova-senha" placeholder="00000000" maxlength="8" inputmode="numeric" autocomplete="new-password">
+                </div>
+                <div class="form-group">
+                    <label>🔑 Confirmar Nova Senha</label>
+                    <input type="password" id="confirmar-nova-senha" placeholder="00000000" maxlength="8" inputmode="numeric" autocomplete="new-password">
+                </div>
+
+                <button onclick="salvarNovaSenha()">Salvar Nova Senha ✅</button>
+                <br>
+                <span class="link-trocar" onclick="mostrarLogin()">⬅ Cancelar</span>
+            </div>
+
+            <!-- ===== TELA SOBRE ===== -->
+            <div id="tela-sobre" class="hidden">
+                <h2>ℹ️ Sobre o Animal Game</h2>
+                <p class="subtitulo-sobre">Horários, prêmios e dias de funcionamento</p>
+
+                <div class="sobre-secao dias">
+                    <h3>📅 Dias de Funcionamento</h3>
+                    <div class="info-linha">
+                        <span class="label-sobre">Segunda a Sexta</span>
+                        <span class="valor-sobre">3 turnos (Manhã, Tarde, Noite)</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Sábado</span>
+                        <span class="valor-sobre">2 turnos (Manhã, Tarde)</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Domingo</span>
+                        <span class="valor-sobre" style="color: #e74c3c;">Fechado 🚫</span>
+                    </div>
+                </div>
+
+                <div class="sobre-secao turno-manha">
+                    <h3>🌅 Turno da Manhã</h3>
+                    <div class="info-linha">
+                        <span class="label-sobre">Apostas</span>
+                        <span class="valor-sobre tempo">08h00 às 11h59</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Resultado</span>
+                        <span class="valor-sobre tempo">12h00</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Prêmios</span>
+                        <span class="valor-sobre moedas">50 🪙 / 75 🪙 / 100 🪙</span>
+                    </div>
+                </div>
+
+                <div class="sobre-secao turno-tarde">
+                    <h3>☀️ Turno da Tarde</h3>
+                    <div class="info-linha">
+                        <span class="label-sobre">Apostas</span>
+                        <span class="valor-sobre tempo">13h00 às 16h59</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Resultado</span>
+                        <span class="valor-sobre tempo">17h00</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Prêmios</span>
+                        <span class="valor-sobre moedas">50 🪙 / 75 🪙 / 100 🪙</span>
+                    </div>
+                </div>
+
+                <div class="sobre-secao turno-noite">
+                    <h3>🌙 Turno da Noite (Seg-Sex)</h3>
+                    <div class="info-linha">
+                        <span class="label-sobre">Apostas</span>
+                        <span class="valor-sobre tempo">18h00 às 19h59</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Resultado</span>
+                        <span class="valor-sobre tempo">20h00</span>
+                    </div>
+                    <div class="info-linha">
+                        <span class="label-sobre">Prêmios</span>
+                        <span class="valor-sobre moedas" style="color: #9b59b6;">100 🪙 / 200 🪙 / 500 🪙</span>
+                    </div>
+                </div>
+
+                <div class="sobre-secao">
+                    <h3>📊 Tabela de Prêmios</h3>
+                    <table class="tabela-premios">
+                        <thead>
+                            <tr>
+                                <th>Turno</th>
+                                <th>🎯 Bicho</th>
+                                <th>💰 Milhar</th>
+                                <th>🎯💰 B+M</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🌅 Manhã</td>
+                                <td class="valor-premio">50 🪙</td>
+                                <td class="valor-premio">75 🪙</td>
+                                <td class="valor-premio">100 🪙</td>
+                            </tr>
+                            <tr>
+                                <td>☀️ Tarde</td>
+                                <td class="valor-premio">50 🪙</td>
+                                <td class="valor-premio">75 🪙</td>
+                                <td class="valor-premio">100 🪙</td>
+                            </tr>
+                            <tr>
+                                <td>🌙 Noite</td>
+                                <td class="valor-especial">100 🪙</td>
+                                <td class="valor-especial">200 🪙</td>
+                                <td class="valor-especial">500 🪙</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="sobre-secao">
+                    <h3>🔒 Regras de Apostas</h3>
+                    <p>• Cada usuário pode fazer no máximo <strong>10 apostas por turno</strong>.</p>
+                    <p>• <strong>Não é permitido repetir a mesma aposta</strong> no mesmo turno.</p>
+                    <p>• Você pode escolher qualquer milhar de <strong>0000 a 9999</strong>.</p>
+                    <p>• O sorteio acontece automaticamente no horário de cada turno.</p>
+                </div>
+
+                <div class="sobre-secao academico">
+                    <h3>📚 Sobre o Projeto</h3>
+                    <p>Este jogo foi desenvolvido como um <strong>projeto acadêmico</strong> para fins de estudo em programação web (HTML, CSS e JavaScript).</p>
+                </div>
+
+                <div class="aviso-academico">
+                    <span class="icone-grande">🎓</span>
+                    <strong>Projeto Acadêmico</strong><br>
+                    Este jogo foi criado exclusivamente para fins educacionais.<br>
+                    Não é um site de apostas real, não envolve dinheiro<br>
+                    e não deve ser usado para qualquer tipo de aposta.
+                </div>
+
+                <button class="btn-voltar-sobre" onclick="fecharSobre()">⬅ Voltar</button>
+            </div>
+
+            <!-- ===== TELA RANKING ===== -->
+            <div id="tela-ranking" class="painel-apostas hidden">
                 <div class="painel-header">
-                    <h2>📋 Minhas Apostas</h2>
-                    <button class="danger small" onclick="fecharPainelApostas()">✖ Fechar</button>
+                    <h2>🏆 Ranking Global</h2>
+                    <button class="danger small" onclick="fecharRanking()">✖ Fechar</button>
                 </div>
-                <div id="estatisticas" class="estatisticas"></div>
-                <div id="lista-apostas"></div>
+                <p style="text-align: center; color: #888; font-size: 13px; margin-bottom: 15px;">
+                    Os jogadores com mais moedas 🪙
+                </p>
+                <div id="lista-ranking"></div>
             </div>
 
-            <div id="conteudo-principal">
-                <!-- Etapa 1: Escolha do Bicho -->
-                <div id="etapa-escolha">
-                    <h2>👇 Escolha o seu bicho:</h2>
-                    <div class="vitrine" id="vitrine"></div>
-                </div>
-
-                <!-- Etapa 2: Escolha da Milhar (opcional) -->
-                <div id="etapa-milhar" class="hidden">
-                    <h2>Você escolheu:</h2>
-                    <div class="bicho-selecionado" id="bicho-selecionado"></div>
-
-                    <h2>💰 Como você quer apostar?</h2>
-                    <div class="opcao-aposta">
-                        <button class="opcao-btn ativo" id="opcao-bicho" onclick="escolherModo('bicho')">
-                            🎯 Só o Bicho
-                            <small>Ganha se acertar o bicho (+10 🪙)</small>
-                        </button>
-                        <button class="opcao-btn" id="opcao-bicho-milhar" onclick="escolherModo('bicho-milhar')">
-                            🎯💰 Bicho + Milhar
-                            <small>Acertar os dois (+50 🪙)</small>
-                        </button>
-                    </div>
-
-                    <div id="area-milhar" class="hidden">
-                        <div class="aviso-milhar-livre">
-                            <span class="icone">💡</span>
-                            <div class="texto">
-                                <strong>A milhar é 100% livre!</strong><br>
-                                Você pode escolher <strong>qualquer número de 0000 a 9999</strong>, mesmo que não pertença ao bicho escolhido. É só digitar os 4 dígitos abaixo.
-                            </div>
+            <!-- ===== TELA 3: JOGO ===== -->
+            <div id="tela-jogo" class="hidden">
+                <div class="top-bar">
+                    <h1 id="saudacao"></h1>
+                    <div class="botoes">
+                        <div class="moedas-box" id="moedas-box">
+                            <span class="moeda-emoji">🪙</span>
+                            <span id="moedas-total">0</span>
                         </div>
-
-                        <div class="milhar-manual">
-                            <label>🔢 Digite a milhar desejada (4 dígitos):</label>
-                            <div class="input-group">
-                                <input type="text" id="input-milhar-manual" placeholder="0000" maxlength="4" inputmode="numeric">
-                                <button onclick="confirmarMilharManual()">Confirmar</button>
-                            </div>
-                            <div id="erro-milhar" class="erro hidden"></div>
-                        </div>
-                    </div>
-
-                    <div id="area-sem-milhar" class="hidden">
-                        <button class="btn-sem-milhar" onclick="apostarSoBicho()">Apostar só no Bicho 🎯</button>
-                    </div>
-
-                    <br>
-                    <button class="secondary" onclick="voltarEscolhaBicho()">⬅ Trocar Bicho</button>
-                </div>
-
-                <!-- Etapa 3: Confirmação + Sorteio -->
-                <div id="etapa-sorteio" class="hidden">
-                    <div class="card" id="card-aposta"></div>
-                    <p><strong>Quer saber o resultado do sorteio agora?</strong></p>
-                    <button class="warning pulse" onclick="iniciarSorteio()">🎰 Sortear Resultado</button>
-                    <button class="secondary" onclick="fazerOutraAposta()">Pular Sorteio</button>
-                </div>
-
-                <!-- Etapa 4: Sorteio Animado -->
-                <div id="etapa-sorteio-animado" class="hidden">
-                    <div class="sorteio-animado">
-                        <h2>🎰 Sorteando...</h2>
-                        <div class="slot-machine">
-                            <div>
-                                <div style="color:#bbb; font-size:12px; margin-bottom:8px; letter-spacing:1px;">BICHO (GRUPO)</div>
-                                <div class="slot rolling" id="slot-bicho">00</div>
-                            </div>
-                            <div>
-                                <div style="color:#bbb; font-size:12px; margin-bottom:8px; letter-spacing:1px;">MILHAR (4 DÍGITOS)</div>
-                                <div class="slot milhar-slot rolling" id="slot-milhar">0000</div>
-                            </div>
-                        </div>
+                        <button class="icon" onclick="mostrarSobre()" title="Sobre">ℹ️</button>
+                        <button class="icon" id="btn-som" onclick="toggleSom()" title="Som">🔊</button>
+                        <button class="purple small" onclick="mostrarRanking()">🏆</button>
+                        <button class="secondary small" onclick="mostrarPainelApostas()">📋</button>
+                        <button class="danger small" onclick="fazerLogout()">🚪</button>
                     </div>
                 </div>
 
-                <!-- Etapa 5: Resultado -->
-                <div id="etapa-resultado" class="hidden">
-                    <div class="card" id="card-resultado">
-                        <div class="resultado-grid">
-                            <div class="resultado-bloco">
-                                <div class="rotulo">🐾 Bicho sorteado</div>
-                                <div class="bicho-sorteado-visual" id="visual-bicho-sorteado"></div>
-                            </div>
-                            <div class="resultado-bloco">
-                                <div class="rotulo">💰 Milhar sorteada</div>
-                                <div class="numero-sorteado milhar-grande" id="resultado-milhar">----</div>
-                            </div>
-                        </div>
-                        <div class="resultado-texto" id="texto-ganhou-perdeu"></div>
-                        <div id="recompensa-container"></div>
+                <div class="painel-turnos" id="painel-turnos"></div>
+
+                <div class="painel-apostas hidden" id="painel-apostas">
+                    <div class="painel-header">
+                        <h2>📋 Minhas Apostas</h2>
+                        <button class="danger small" onclick="fecharPainelApostas()">✖ Fechar</button>
                     </div>
-                    <button class="gold" onclick="fazerOutraAposta()">Fazer Nova Aposta 🔄</button>
+
+                    <div class="abas">
+                        <button class="aba ativa" id="aba-apostas" onclick="mudarAba('apostas')">🐾 Apostas</button>
+                        <button class="aba" id="aba-sorteios" onclick="mudarAba('sorteios')">🎰 Sorteios</button>
+                    </div>
+
+                    <div id="conteudo-apostas">
+                        <div id="estatisticas" class="estatisticas"></div>
+                        <div id="lista-apostas"></div>
+                    </div>
+
+                    <div id="conteudo-sorteios" class="hidden">
+                        <div id="lista-sorteios"></div>
+                    </div>
+                </div>
+
+                <div id="conteudo-principal">
+                    <div id="aviso-fechado" class="aviso-fechado hidden">
+                        <span class="icone" id="aviso-icone">🌙</span>
+                        <h2 id="aviso-titulo">Jogo Fechado</h2>
+                        <p id="aviso-texto"></p>
+                        <div class="info-dias">
+                            <p style="margin: 0;"><strong>📅 Dias de funcionamento:</strong></p>
+                            <p style="margin: 5px 0;">• Seg-Sex: 🌅 08h-11h59 | ☀️ 13h-16h59 | 🌙 18h-19h59</p>
+                            <p style="margin: 5px 0;">• Sábado: 🌅 08h-11h59 | ☀️ 13h-16h59</p>
+                            <p style="margin: 5px 0;">• Domingo: Fechado 🚫</p>
+                        </div>
+                    </div>
+
+                    <div id="jogo-ativo">
+                        <div id="contador-box" class="contador-apostas hidden">
+                            <span>📊 Apostas no turno atual:</span>
+                            <span class="numero-apostas" id="contador-apostas">0 / 10</span>
+                        </div>
+
+                        <div id="etapa-escolha">
+                            <h2>👇 Escolha o seu bicho:</h2>
+                            <div class="vitrine" id="vitrine"></div>
+                        </div>
+
+                        <div id="etapa-milhar" class="hidden">
+                            <h2>Você escolheu:</h2>
+                            <div class="bicho-selecionado" id="bicho-selecionado"></div>
+
+                            <h2>💰 Como você quer apostar?</h2>
+                            <div class="opcao-aposta">
+                                <button class="opcao-btn ativo" id="opcao-bicho" onclick="escolherModo('bicho')">
+                                    🎯 Só o Bicho
+                                    <small id="premio-bicho-txt"></small>
+                                </button>
+                                <button class="opcao-btn" id="opcao-bicho-milhar" onclick="escolherModo('bicho-milhar')">
+                                    🎯💰 Bicho + Milhar
+                                    <small id="premio-milhar-txt"></small>
+                                </button>
+                            </div>
+
+                            <div id="area-milhar" class="hidden">
+                                <div class="aviso-milhar-livre">
+                                    <span class="icone">💡</span>
+                                    <div class="texto">
+                                        <strong>A milhar é 100% livre!</strong><br>
+                                        Escolha qualquer número de <strong>0000 a 9999</strong>, mesmo que não pertença ao bicho.
+                                    </div>
+                                </div>
+
+                                <div class="milhar-manual">
+                                    <label>🔢 Digite a milhar desejada (4 dígitos):</label>
+                                    <div class="input-group">
+                                        <input type="text" id="input-milhar-manual" placeholder="0000" maxlength="4" inputmode="numeric">
+                                        <button onclick="confirmarMilharManual()">Confirmar</button>
+                                    </div>
+                                    <div id="erro-milhar" class="erro hidden"></div>
+                                </div>
+                            </div>
+
+                            <div id="area-sem-milhar" class="hidden">
+                                <button class="btn-sem-milhar" onclick="apostarSoBicho()">Apostar só no Bicho 🎯</button>
+                            </div>
+
+                            <br>
+                            <button class="secondary" onclick="voltarEscolhaBicho()">⬅ Trocar Bicho</button>
+                        </div>
+
+                        <div id="etapa-confirmacao" class="hidden">
+                            <div class="card" id="card-aposta"></div>
+                            <p><strong>Deseja confirmar esta aposta?</strong></p>
+                            <p style="font-size: 13px; color: #888;">A aposta será registrada para o sorteio do turno atual.</p>
+                            <button class="warning pulse" onclick="confirmarAposta()">✅ Confirmar Aposta</button>
+                            <button class="secondary" onclick="fazerOutraAposta()">❌ Cancelar</button>
+                        </div>
+
+                        <div id="etapa-aposta-registrada" class="hidden">
+                            <div class="aviso-aguardando">
+                                <span class="relogio">⏳</span>
+                                <h2>Sua aposta foi registrada!</h2>
+                                <p>Ela vai concorrer no sorteio do turno:</p>
+                                <div class="horario-sorteio" id="horario-sorteio-aposta">--</div>
+                                <p style="margin-top: 15px; font-size: 14px; color: #888;">
+                                    Aguarde o horário do sorteio. Você pode continuar apostando!
+                                </p>
+                            </div>
+                            <button class="gold" onclick="fazerOutraAposta()">Fazer Nova Aposta 🔄</button>
+                            <button class="secondary" onclick="mostrarPainelApostas()">📋 Ver Minhas Apostas</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== TELA 3: DESPEDIDA ===== -->
-        <div id="tela-fim" class="hidden">
-            <h1>👋 Até a próxima!</h1>
-            <p id="mensagem-final"></p>
-            <button onclick="reiniciarTudo()">Voltar ao Início 🏠</button>
+        <!-- ===== RODAPÉ ===== -->
+        <div class="rodape">
+            <span class="marca">Animal Game</span> &nbsp;|&nbsp; ES@2026
         </div>
     </div>
 
@@ -1056,18 +2156,50 @@
             25: { nome: "Vaca",     emoji: "🐮" }
         };
 
-        // ===== RECOMPENSAS =====
-        const RECOMPENSA_BICHO = 10;
-        const RECOMPENSA_BICHO_MILHAR = 50;
+        // ===== TURNOS =====
+        const TURNOS = {
+            manha: { 
+                nome: "Manhã", emoji: "🌅", 
+                inicio: 8, inicioMin: 0,
+                resultado: 12, resultadoMin: 0,
+                horaResultado: "12:00",
+                premios: { bicho: 50, milhar: 75, bichoMilhar: 100 }
+            },
+            tarde: { 
+                nome: "Tarde", emoji: "☀️", 
+                inicio: 13, inicioMin: 0,
+                resultado: 17, resultadoMin: 0,
+                horaResultado: "17:00",
+                premios: { bicho: 50, milhar: 75, bichoMilhar: 100 }
+            },
+            noite: { 
+                nome: "Noite", emoji: "🌙", 
+                inicio: 18, inicioMin: 0,
+                resultado: 20, resultadoMin: 0,
+                horaResultado: "20:00",
+                premios: { bicho: 100, milhar: 200, bichoMilhar: 500 }
+            }
+        };
+
+        const LIMITE_APOSTAS_POR_TURNO = 10;
+        
+        const DOMINIOS_EMAIL_VALIDOS = [
+            'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'yahoo.com.br',
+            'live.com', 'icloud.com', 'bol.com.br', 'uol.com.br', 'terra.com.br',
+            'protonmail.com', 'proton.me', 'aol.com', 'zoho.com', 'mail.com',
+            'gmail.com.br', 'hotmail.com.br', 'outlook.com.br', 'ymail.com'
+        ];
 
         // ===== ESTADO =====
-        let nomeUsuario = "";
-        let historico = [];
+        let usuarioAtual = null;
+        let apostas = [];
+        let sorteios = [];
         let bichoSelecionado = null;
         let milharSelecionada = null;
         let modoAposta = "bicho";
         let somLigado = true;
-        let moedas = 0;
+        let verificadorInterval = null;
+        let usuarioRecuperacao = null; // usuário identificado para redefinir senha
 
         // ===== ÁUDIO =====
         let audioCtx = null;
@@ -1107,28 +2239,10 @@
             tocarNota(1320, 0.08, "square", 0.05, 0.05);
         }
 
-        function somTick() {
-            tocarNota(600, 0.04, "square", 0.05);
-        }
-
         function somVitoria() {
             if (!somLigado) return;
             const notas = [523.25, 659.25, 783.99, 1046.5];
             notas.forEach((f, i) => tocarNota(f, 0.25, "triangle", 0.2, i * 0.12));
-        }
-
-        function somDerrota() {
-            if (!somLigado) return;
-            const notas = [392, 349.23, 293.66, 220];
-            notas.forEach((f, i) => tocarNota(f, 0.25, "sawtooth", 0.15, i * 0.13));
-        }
-
-        function somMoeda() {
-            if (!somLigado) return;
-            // Som de "moeda caindo"
-            tocarNota(1200, 0.08, "triangle", 0.2);
-            tocarNota(1800, 0.1, "triangle", 0.18, 0.06);
-            tocarNota(2400, 0.15, "triangle", 0.15, 0.12);
         }
 
         function iniciarMusica() {
@@ -1136,16 +2250,11 @@
             pararMusica();
 
             const melodia = [
-                { f: 523.25, d: 0.25, t: 0.00 },
-                { f: 587.33, d: 0.25, t: 0.25 },
-                { f: 659.25, d: 0.25, t: 0.50 },
-                { f: 523.25, d: 0.25, t: 0.75 },
-                { f: 659.25, d: 0.25, t: 1.00 },
-                { f: 587.33, d: 0.50, t: 1.25 },
-                { f: 523.25, d: 0.75, t: 1.75 },
-                { f: 392.00, d: 0.25, t: 2.50 },
-                { f: 440.00, d: 0.25, t: 2.75 },
-                { f: 493.88, d: 0.25, t: 3.00 },
+                { f: 523.25, d: 0.25, t: 0.00 }, { f: 587.33, d: 0.25, t: 0.25 },
+                { f: 659.25, d: 0.25, t: 0.50 }, { f: 523.25, d: 0.25, t: 0.75 },
+                { f: 659.25, d: 0.25, t: 1.00 }, { f: 587.33, d: 0.50, t: 1.25 },
+                { f: 523.25, d: 0.75, t: 1.75 }, { f: 392.00, d: 0.25, t: 2.50 },
+                { f: 440.00, d: 0.25, t: 2.75 }, { f: 493.88, d: 0.25, t: 3.00 },
                 { f: 523.25, d: 0.75, t: 3.25 }
             ];
             const duracaoLoop = 4.0;
@@ -1195,54 +2304,763 @@
             }
         }
 
-        // ===== ATUALIZAR MOEDAS =====
-        function atualizarMoedas(ganho = 0) {
-            if (ganho > 0) {
-                moedas += ganho;
-                const box = document.getElementById('moedas-box');
-                box.classList.add('ganhou-moedas');
-                setTimeout(() => box.classList.remove('ganhou-moedas'), 500);
+        // ===== BANCO DE DADOS =====
+        const DB_KEY = 'animalGame_db_v2';
+
+        function carregarDB() {
+            try {
+                const raw = localStorage.getItem(DB_KEY);
+                if (!raw) return { usuarios: [] };
+                return JSON.parse(raw);
+            } catch (e) {
+                console.warn("Erro ao carregar DB:", e);
+                return { usuarios: [] };
             }
-            document.getElementById('moedas-total').innerText = moedas;
         }
 
-        // ===== CHUVA DE EMOJIS =====
-        function chuvaDeEmojis() {
-            const emojis = ['🎉', '✨', '🌟', '💫', '🎊', '🪙', '⭐', '🏆'];
-            const quantidade = 25;
+        function salvarDB(db) {
+            try {
+                localStorage.setItem(DB_KEY, JSON.stringify(db));
+            } catch (e) {
+                console.warn("Erro ao salvar DB:", e);
+            }
+        }
+
+        function salvarDadosUsuario() {
+            if (!usuarioAtual) return;
+            const db = carregarDB();
+            const userIdx = db.usuarios.findIndex(u => u.nickname === usuarioAtual.nickname);
             
-            for (let i = 0; i < quantidade; i++) {
-                const el = document.createElement('div');
-                el.className = 'emoji-chuva';
-                el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                el.style.left = Math.random() * 100 + '%';
-                el.style.animationDuration = (2 + Math.random() * 2) + 's';
-                el.style.animationDelay = (Math.random() * 0.5) + 's';
-                el.style.fontSize = (24 + Math.random() * 20) + 'px';
-                document.body.appendChild(el);
-
-                setTimeout(() => el.remove(), 5000);
+            if (userIdx !== -1) {
+                db.usuarios[userIdx].apostas = apostas;
+                db.usuarios[userIdx].sorteios = sorteios;
+                db.usuarios[userIdx].moedas = usuarioAtual.moedas;
+                salvarDB(db);
+                usuarioAtual.apostas = apostas;
+                usuarioAtual.sorteios = sorteios;
             }
         }
 
-        // ===== INICIALIZAÇÃO =====
-        function salvarNome() {
-            const inputNome = document.getElementById('input-nome').value.trim();
-            if (inputNome === "") {
-                alert("Please, enter your name to start!");
-                return;
+        function carregarDadosUsuario() {
+            if (!usuarioAtual) return;
+            apostas = usuarioAtual.apostas || [];
+            sorteios = usuarioAtual.sorteios || [];
+        }
+
+        // ===== VALIDAÇÃO DE E-MAIL =====
+        function validarEmailReal(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!regex.test(email)) return { valido: false, motivo: "Formato de e-mail inválido." };
+            
+            const dominio = email.split('@')[1].toLowerCase();
+            if (!DOMINIOS_EMAIL_VALIDOS.includes(dominio)) {
+                return { 
+                    valido: false, 
+                    motivo: `Use um e-mail de domínio conhecido (Gmail, Outlook, Hotmail, Yahoo, etc.).` 
+                };
             }
+            
+            const usuario = email.split('@')[0];
+            if (usuario.length < 3) {
+                return { valido: false, motivo: "A parte antes do @ deve ter pelo menos 3 caracteres." };
+            }
+            
+            return { valido: true };
+        }
+
+        // ===== NAVEGAÇÃO =====
+        function mostrarLogin() {
+            somClique();
+            document.getElementById('tela-registro').classList.add('hidden');
+            document.getElementById('tela-recuperar').classList.add('hidden');
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.add('hidden');
+            document.getElementById('tela-login').classList.remove('hidden');
+            document.getElementById('mensagem-login').classList.add('hidden');
+        }
+
+        function mostrarRegistro() {
+            somClique();
+            document.getElementById('tela-login').classList.add('hidden');
+            document.getElementById('tela-recuperar').classList.add('hidden');
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.add('hidden');
+            document.getElementById('tela-registro').classList.remove('hidden');
+            document.getElementById('mensagem-registro').classList.add('hidden');
+        }
+
+        function mostrarRecuperarSenha() {
+            somClique();
+            document.getElementById('tela-login').classList.add('hidden');
+            document.getElementById('tela-registro').classList.add('hidden');
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.add('hidden');
+            document.getElementById('tela-recuperar').classList.remove('hidden');
+            document.getElementById('mensagem-recuperar').classList.add('hidden');
+            document.getElementById('recuperar-email').value = '';
+            usuarioRecuperacao = null;
+        }
+
+        function mostrarMensagem(id, texto, tipo = 'erro') {
+            const el = document.getElementById(id);
+            el.className = `mensagem-auth ${tipo}`;
+            el.innerText = texto;
+            el.classList.remove('hidden');
+        }
+
+        // ===== REGISTRO =====
+        function fazerRegistro() {
+            const nickname = document.getElementById('registro-nickname').value.trim();
+            const email = document.getElementById('registro-email').value.trim().toLowerCase();
+            const senha = document.getElementById('registro-senha').value.trim();
+
+            if (!nickname || nickname.length < 2) {
+                return mostrarMensagem('mensagem-registro', '❌ Nickname deve ter pelo menos 2 caracteres.', 'erro');
+            }
+            if (nickname.length > 20) {
+                return mostrarMensagem('mensagem-registro', '❌ Nickname deve ter no máximo 20 caracteres.', 'erro');
+            }
+            if (!/^[a-zA-Z0-9_]+$/.test(nickname)) {
+                return mostrarMensagem('mensagem-registro', '❌ Nickname só pode ter letras, números e _.', 'erro');
+            }
+
+            const checkEmail = validarEmailReal(email);
+            if (!checkEmail.valido) {
+                return mostrarMensagem('mensagem-registro', '❌ ' + checkEmail.motivo, 'erro');
+            }
+
+            if (!senha || !/^\d+$/.test(senha)) {
+                return mostrarMensagem('mensagem-registro', '❌ Senha deve conter apenas números.', 'erro');
+            }
+            if (senha.length !== 8) {
+                return mostrarMensagem('mensagem-registro', '❌ A senha deve ter EXATAMENTE 8 números.', 'erro');
+            }
+
+            const db = carregarDB();
+
+            if (db.usuarios.find(u => u.email === email)) {
+                return mostrarMensagem('mensagem-registro', '❌ Este e-mail já está cadastrado.', 'erro');
+            }
+
+            if (db.usuarios.find(u => u.nickname.toLowerCase() === nickname.toLowerCase())) {
+                return mostrarMensagem('mensagem-registro', '❌ Este nickname já está em uso. Escolha outro.', 'erro');
+            }
+
+            const novoUsuario = {
+                nickname,
+                email,
+                senha,
+                moedas: 0,
+                apostas: [],
+                sorteios: [],
+                criadoEm: new Date().toISOString()
+            };
+
+            db.usuarios.push(novoUsuario);
+            salvarDB(db);
+
+            mostrarMensagem('mensagem-registro', '✅ Conta criada! Faça login para entrar.', 'sucesso');
+            setTimeout(() => {
+                mostrarLogin();
+                document.getElementById('login-nickname').value = nickname;
+                document.getElementById('login-senha').value = '';
+            }, 1500);
+        }
+
+        // ===== LOGIN =====
+        function fazerLogin() {
+            const nickname = document.getElementById('login-nickname').value.trim();
+            const senha = document.getElementById('login-senha').value.trim();
+
+            if (!nickname || !senha) {
+                return mostrarMensagem('mensagem-login', '❌ Preencha nickname e senha.', 'erro');
+            }
+
+            const db = carregarDB();
+            const user = db.usuarios.find(u => u.nickname.toLowerCase() === nickname.toLowerCase());
+
+            if (!user) {
+                return mostrarMensagem('mensagem-login', '❌ Nickname não cadastrado.', 'erro');
+            }
+            if (user.senha !== senha) {
+                return mostrarMensagem('mensagem-login', '❌ Senha incorreta.', 'erro');
+            }
+
+            usuarioAtual = user;
+            carregarDadosUsuario();
+            iniciarSessao();
+        }
+
+        function fazerLogout() {
+            if (!confirm("Deseja realmente sair?")) return;
+            salvarDadosUsuario();
+            usuarioAtual = null;
+            apostas = [];
+            sorteios = [];
+            bichoSelecionado = null;
+            milharSelecionada = null;
+            
+            document.getElementById('tela-jogo').classList.add('hidden');
+            document.getElementById('tela-login').classList.remove('hidden');
+            document.getElementById('login-senha').value = '';
+            document.getElementById('login-nickname').value = '';
+            pararMusica();
+        }
+
+        function iniciarSessao() {
             initAudio();
-            nomeUsuario = inputNome;
-            document.getElementById('tela-nome').classList.add('hidden');
+            document.getElementById('tela-login').classList.add('hidden');
+            document.getElementById('tela-registro').classList.add('hidden');
+            document.getElementById('tela-recuperar').classList.add('hidden');
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.add('hidden');
             document.getElementById('tela-jogo').classList.remove('hidden');
-            document.getElementById('saudacao').innerText = `Olá, ${nomeUsuario}! 🍀`;
+            document.getElementById('saudacao').innerText = `Olá, ${usuarioAtual.nickname}! 🍀`;
+            
             renderizarVitrine();
+            atualizarInterface();
             somClique();
             if (somLigado) iniciarMusica();
+
+            verificarSorteios();
+            if (verificadorInterval) clearInterval(verificadorInterval);
+            verificadorInterval = setInterval(verificarSorteios, 30000);
+            setInterval(atualizarInterface, 60000);
         }
 
-        // ===== VITRINE =====
+        // ===== RECUPERAÇÃO DE SENHA - ETAPA 1: DIGITA EMAIL =====
+        function enviarLinkRecuperacao() {
+            const email = document.getElementById('recuperar-email').value.trim().toLowerCase();
+            const msgEl = document.getElementById('mensagem-recuperar');
+
+            // Validação básica
+            if (!email) {
+                return mostrarMensagem('mensagem-recuperar', '❌ Digite seu e-mail.', 'erro');
+            }
+            const checkEmail = validarEmailReal(email);
+            if (!checkEmail.valido) {
+                return mostrarMensagem('mensagem-recuperar', '❌ ' + checkEmail.motivo, 'erro');
+            }
+
+            const db = carregarDB();
+            const user = db.usuarios.find(u => u.email === email);
+
+            // Sempre mostra a mesma mensagem (segurança - não revela se existe ou não)
+            mostrarMensagem('mensagem-recuperar', 
+                '📬 Se este e-mail estiver cadastrado, você receberá um link para redefinir sua senha.', 
+                'sucesso');
+
+            if (user) {
+                // Salva usuário para próxima etapa
+                usuarioRecuperacao = user;
+                document.getElementById('email-destinatario').innerText = `Para: ${email}`;
+                
+                // Após 1.5s, vai para tela do "e-mail recebido"
+                setTimeout(() => {
+                    document.getElementById('tela-recuperar').classList.add('hidden');
+                    document.getElementById('tela-link-email').classList.remove('hidden');
+                    document.getElementById('mensagem-link').classList.add('hidden');
+                }, 1500);
+            } else {
+                // Se não existe, apenas mostra a mensagem e não avança
+                // Mas para não revelar, podemos simular também o avanço (opcional)
+                // Vou fazer avançar mesmo assim, mas sem usuárioRecuperacao válido
+                // Assim a pessoa não descobre se o email existe
+                setTimeout(() => {
+                    document.getElementById('tela-recuperar').classList.add('hidden');
+                    document.getElementById('tela-link-email').classList.remove('hidden');
+                    document.getElementById('email-destinatario').innerText = `Para: ${email}`;
+                    // Marca usuário como null para não conseguir redefinir de fato
+                    usuarioRecuperacao = null;
+                }, 1500);
+            }
+        }
+
+        // ===== RECUPERAÇÃO - ETAPA 2: CLICA NO LINK =====
+        function abrirNovaSenha() {
+            somClique();
+
+            if (!usuarioRecuperacao) {
+                // Se por acaso o e-mail não existia, mostra erro
+                document.getElementById('mensagem-link').className = 'mensagem-auth erro';
+                document.getElementById('mensagem-link').innerText = '❌ Este link é inválido ou expirado.';
+                document.getElementById('mensagem-link').classList.remove('hidden');
+                return;
+            }
+
+            // Vai para tela de nova senha
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.remove('hidden');
+            document.getElementById('mensagem-nova-senha').classList.add('hidden');
+            document.getElementById('texto-nova-senha').innerText = `Olá, ${usuarioRecuperacao.nickname}! Crie sua nova senha:`;
+            document.getElementById('nova-senha').value = '';
+            document.getElementById('confirmar-nova-senha').value = '';
+        }
+
+        // ===== RECUPERAÇÃO - ETAPA 3: SALVA NOVA SENHA =====
+        function salvarNovaSenha() {
+            const novaSenha = document.getElementById('nova-senha').value.trim();
+            const confirmar = document.getElementById('confirmar-nova-senha').value.trim();
+
+            if (!novaSenha || !/^\d+$/.test(novaSenha)) {
+                return mostrarMensagem('mensagem-nova-senha', '❌ Senha deve conter apenas números.', 'erro');
+            }
+            if (novaSenha.length !== 8) {
+                return mostrarMensagem('mensagem-nova-senha', '❌ A senha deve ter EXATAMENTE 8 números.', 'erro');
+            }
+            if (novaSenha !== confirmar) {
+                return mostrarMensagem('mensagem-nova-senha', '❌ As senhas não coincidem.', 'erro');
+            }
+            if (!usuarioRecuperacao) {
+                return mostrarMensagem('mensagem-nova-senha', '❌ Erro: usuário não identificado.', 'erro');
+            }
+
+            // Atualiza no banco
+            const db = carregarDB();
+            const idx = db.usuarios.findIndex(u => u.nickname === usuarioRecuperacao.nickname);
+            
+            if (idx === -1) {
+                return mostrarMensagem('mensagem-nova-senha', '❌ Erro ao atualizar senha.', 'erro');
+            }
+
+            db.usuarios[idx].senha = novaSenha;
+            salvarDB(db);
+
+            mostrarMensagem('mensagem-nova-senha', '✅ Senha alterada com sucesso! Redirecionando para o login...', 'sucesso');
+            
+            // Guarda o nickname para pré-preencher no login
+            const nickSalvo = db.usuarios[idx].nickname;
+            usuarioRecuperacao = null;
+
+            setTimeout(() => {
+                mostrarLogin();
+                document.getElementById('login-nickname').value = nickSalvo;
+                document.getElementById('login-senha').value = '';
+                document.getElementById('login-senha').focus();
+            }, 1500);
+        }
+
+        // ===== FUNÇÕES DE DATA E TURNO =====
+        function getDataHoje() {
+            return new Date().toISOString().split('T')[0];
+        }
+
+        function getDiaSemana() {
+            return new Date().getDay();
+        }
+
+        function isDiaPermitido() {
+            const dia = getDiaSemana();
+            return dia >= 1 && dia <= 6;
+        }
+
+        function getTurnoAtual() {
+            if (!isDiaPermitido()) return null;
+            
+            const agora = new Date();
+            const totalMin = agora.getHours() * 60 + agora.getMinutes();
+            const dia = getDiaSemana();
+
+            if (totalMin >= 480 && totalMin < 720) return 'manha';
+            if (totalMin >= 780 && totalMin < 1020) return 'tarde';
+            if (dia >= 1 && dia <= 5) {
+                if (totalMin >= 1080 && totalMin < 1200) return 'noite';
+            }
+            return null;
+        }
+
+        function jaPassouDoResultado(turno) {
+            const agora = new Date();
+            const totalMin = agora.getHours() * 60 + agora.getMinutes();
+            const t = TURNOS[turno];
+            const resultadoMin = t.resultado * 60 + t.resultadoMin;
+            return totalMin >= resultadoMin;
+        }
+
+        function isTurnoJaSorteado(turno, data) {
+            return sorteios.some(s => s.data === data && s.turno === turno);
+        }
+
+        // ===== APOSTAS =====
+        function contarApostasDoTurno(turno, data) {
+            return apostas.filter(a => a.turno === turno && a.data === data).length;
+        }
+
+        function podeApostar() {
+            const turno = getTurnoAtual();
+            if (!turno) return { pode: false, motivo: "Fora do horário de apostas" };
+            
+            const dataHoje = getDataHoje();
+            const qtd = contarApostasDoTurno(turno, dataHoje);
+            
+            if (qtd >= LIMITE_APOSTAS_POR_TURNO) {
+                return { pode: false, motivo: `Limite de ${LIMITE_APOSTAS_POR_TURNO} apostas atingido neste turno` };
+            }
+            return { pode: true };
+        }
+
+        function verificarApostaDuplicada(bichoNum, milhar) {
+            const turno = getTurnoAtual();
+            if (!turno) return { duplicada: false };
+            
+            const dataHoje = getDataHoje();
+            
+            const duplicada = apostas.find(a => 
+                a.turno === turno && 
+                a.data === dataHoje && 
+                a.bichoNum === bichoNum && 
+                a.milhar === milhar
+            );
+            
+            if (duplicada) {
+                return {
+                    duplicada: true,
+                    motivo: milhar 
+                        ? `Você já apostou no bicho ${bichoNum.toString().padStart(2, '0')} com a milhar ${milhar} neste turno.`
+                        : `Você já apostou no bicho ${bichoNum.toString().padStart(2, '0')} (só bicho) neste turno.`
+                };
+            }
+            return { duplicada: false };
+        }
+
+        function atualizarContador() {
+            const turno = getTurnoAtual();
+            const contadorBox = document.getElementById('contador-box');
+            const contador = document.getElementById('contador-apostas');
+            
+            if (!turno) {
+                contadorBox.classList.add('hidden');
+                return;
+            }
+
+            const dataHoje = getDataHoje();
+            const qtd = contarApostasDoTurno(turno, dataHoje);
+            
+            contadorBox.classList.remove('hidden');
+            contador.innerText = `${qtd} / ${LIMITE_APOSTAS_POR_TURNO}`;
+            
+            if (qtd >= LIMITE_APOSTAS_POR_TURNO) {
+                contadorBox.classList.add('cheio');
+            } else {
+                contadorBox.classList.remove('cheio');
+            }
+
+            const vitrine = document.getElementById('vitrine');
+            const bichoCards = vitrine.querySelectorAll('.bicho-card');
+            if (qtd >= LIMITE_APOSTAS_POR_TURNO) {
+                bichoCards.forEach(c => {
+                    c.style.pointerEvents = 'none';
+                    c.style.opacity = '0.4';
+                });
+            } else {
+                bichoCards.forEach(c => {
+                    c.style.pointerEvents = 'auto';
+                    c.style.opacity = '1';
+                });
+            }
+        }
+
+        // ===== SORTEIOS =====
+        function verificarSorteios() {
+            const dataHoje = getDataHoje();
+
+            Object.keys(TURNOS).forEach(turno => {
+                if (turno === 'noite' && (getDiaSemana() === 0 || getDiaSemana() === 6)) return;
+                
+                if (jaPassouDoResultado(turno) && !isTurnoJaSorteado(turno, dataHoje)) {
+                    const apostasPendentes = apostas.filter(a => 
+                        a.status === 'pendente' && 
+                        a.data === dataHoje && 
+                        a.turno === turno
+                    );
+
+                    if (apostasPendentes.length > 0) {
+                        executarSorteio(turno, dataHoje);
+                    } else {
+                        sorteios.push({
+                            turno: turno,
+                            data: dataHoje,
+                            dataHora: new Date().toISOString(),
+                            semApostas: true
+                        });
+                        salvarDadosUsuario();
+                    }
+                }
+            });
+
+            atualizarInterface();
+        }
+
+        function executarSorteio(turno, data) {
+            const agora = new Date();
+            const turnoInfo = TURNOS[turno];
+            
+            const bichoSorteado = Math.floor(Math.random() * 25) + 1;
+            const milharSorteada = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+            const bichoSorteadoObj = animais[bichoSorteado];
+
+            const registroSorteio = {
+                turno: turno,
+                data: data,
+                dataHora: agora.toISOString(),
+                bicho: bichoSorteado,
+                bichoEmoji: bichoSorteadoObj.emoji,
+                bichoNome: bichoSorteadoObj.nome,
+                milhar: milharSorteada
+            };
+            sorteios.push(registroSorteio);
+
+            apostas.forEach(aposta => {
+                if (aposta.status === 'pendente' && aposta.data === data && aposta.turno === turno) {
+                    const acertouBicho = aposta.bichoNum === bichoSorteado;
+                    const acertouMilhar = aposta.milhar !== null && aposta.milhar === milharSorteada;
+
+                    let ganhou = false;
+                    let recompensa = 0;
+                    let tipoVitoria = "";
+
+                    if (aposta.milhar === null) {
+                        if (acertouBicho) {
+                            ganhou = true;
+                            recompensa = turnoInfo.premios.bicho;
+                            tipoVitoria = "bicho";
+                        }
+                    } else {
+                        if (acertouBicho && acertouMilhar) {
+                            ganhou = true;
+                            recompensa = turnoInfo.premios.bichoMilhar;
+                            tipoVitoria = "bicho-milhar";
+                        } else if (acertouMilhar) {
+                            ganhou = true;
+                            recompensa = turnoInfo.premios.milhar;
+                            tipoVitoria = "milhar";
+                        }
+                    }
+
+                    aposta.status = ganhou ? 'ganhou' : 'perdeu';
+                    aposta.recompensa = recompensa;
+                    aposta.tipoVitoria = tipoVitoria;
+                    aposta.bichoSorteado = bichoSorteado;
+                    aposta.bichoSorteadoEmoji = bichoSorteadoObj.emoji;
+                    aposta.bichoSorteadoNome = bichoSorteadoObj.nome;
+                    aposta.milharSorteada = milharSorteada;
+
+                    if (ganhou) {
+                        usuarioAtual.moedas += recompensa;
+                    }
+                }
+            });
+
+            salvarDadosUsuario();
+            
+            setTimeout(() => {
+                mostrarNotificacaoSorteio(registroSorteio);
+            }, 500);
+        }
+
+        function mostrarNotificacaoSorteio(registro) {
+            const turnoInfo = TURNOS[registro.turno];
+            alert(`🎰 SORTEIO DO TURNO ${turnoInfo.nome.toUpperCase()}!\n\n` +
+                  `Bicho: ${registro.bichoEmoji} ${registro.bichoNome} (Grupo ${registro.bicho.toString().padStart(2, '0')})\n` +
+                  `Milhar: ${registro.milhar}\n\n` +
+                  `Confira suas apostas no painel!`);
+            somVitoria();
+            atualizarInterface();
+        }
+
+        // ===== INTERFACE =====
+        function atualizarInterface() {
+            const turno = getTurnoAtual();
+            const dataHoje = getDataHoje();
+            const dia = getDiaSemana();
+
+            renderizarPainelTurnos(turno, dataHoje);
+
+            const avisoFechado = document.getElementById('aviso-fechado');
+            const jogoAtivo = document.getElementById('jogo-ativo');
+            const avisoTitulo = document.getElementById('aviso-titulo');
+            const avisoTexto = document.getElementById('aviso-texto');
+            const avisoIcone = document.getElementById('aviso-icone');
+
+            if (turno === null) {
+                avisoFechado.classList.remove('hidden');
+                jogoAtivo.classList.add('hidden');
+
+                if (dia === 0) {
+                    avisoIcone.innerText = '🚫';
+                    avisoTitulo.innerText = 'Domingo - Fechado';
+                    avisoTexto.innerText = 'O jogo não funciona aos domingos. Volte na segunda-feira!';
+                } else {
+                    avisoIcone.innerText = '🌙';
+                    avisoTitulo.innerText = 'Fora do Horário';
+                    avisoTexto.innerText = 'Aguarde o próximo turno para apostar.';
+                }
+            } else {
+                avisoFechado.classList.add('hidden');
+                jogoAtivo.classList.remove('hidden');
+                atualizarContador();
+            }
+
+            document.getElementById('moedas-total').innerText = usuarioAtual ? usuarioAtual.moedas : 0;
+
+            if (!document.getElementById('painel-apostas').classList.contains('hidden')) {
+                renderizarPainelApostas();
+            }
+        }
+
+        function renderizarPainelTurnos(turnoAtual, dataHoje) {
+            const container = document.getElementById('painel-turnos');
+            container.innerHTML = '';
+            const agora = new Date();
+            const totalMin = agora.getHours() * 60 + agora.getMinutes();
+            const dia = getDiaSemana();
+
+            Object.keys(TURNOS).forEach(key => {
+                const t = TURNOS[key];
+                const ativo = (key === turnoAtual);
+                const jaSorteado = isTurnoJaSorteado(key, dataHoje);
+                const resultadoMin = t.resultado * 60 + t.resultadoMin;
+                const inicioMin = t.inicio * 60 + t.inicioMin;
+
+                const disponivelHoje = !(key === 'noite' && (dia === 0 || dia === 6));
+                const especial = (key === 'noite');
+                
+                let status = '';
+                if (!disponivelHoje) status = '🚫 HOJE NÃO';
+                else if (ativo && !jaSorteado) status = '✅ ABERTO';
+                else if (jaSorteado) status = '🎰 SORTEADO';
+                else if (totalMin < inicioMin) status = `⏰ ${t.inicio}h`;
+                else if (totalMin >= resultadoMin) status = `🎰 ${t.horaResultado}`;
+                else status = '🔒 FECHADO';
+
+                const card = document.createElement('div');
+                let classes = 'turno-card ';
+                if (ativo && !jaSorteado) classes += 'ativo ';
+                else classes += 'fechado ';
+                if (especial) classes += 'especial';
+                
+                card.className = classes;
+                card.innerHTML = `
+                    ${ativo && !jaSorteado ? '<div class="pulse-dot"></div>' : ''}
+                    <div class="turno-nome">${t.emoji} ${t.nome}</div>
+                    <div class="turno-horario">${t.inicio}h - ${t.horaResultado}</div>
+                    <div class="turno-premios">🪙 ${t.premios.bicho}/${t.premios.milhar}/${t.premios.bichoMilhar}</div>
+                    <div class="turno-status">${status}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // ===== RANKING =====
+        function mostrarRanking() {
+            somClique();
+            document.getElementById('painel-apostas').classList.add('hidden');
+            document.getElementById('conteudo-principal').classList.add('hidden');
+            document.getElementById('tela-ranking').classList.remove('hidden');
+            renderizarRanking();
+        }
+
+        function mostrarRankingLogin() {
+            somClique();
+            document.getElementById('tela-login').classList.add('hidden');
+            document.getElementById('tela-registro').classList.add('hidden');
+            document.getElementById('tela-sobre').classList.add('hidden');
+            document.getElementById('tela-recuperar').classList.add('hidden');
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.add('hidden');
+            document.getElementById('tela-ranking').classList.remove('hidden');
+            document.getElementById('tela-ranking').classList.add('painel-apostas');
+            renderizarRanking();
+        }
+
+        function fecharRanking() {
+            somClique();
+            document.getElementById('tela-ranking').classList.add('hidden');
+            
+            if (usuarioAtual) {
+                document.getElementById('conteudo-principal').classList.remove('hidden');
+            } else {
+                document.getElementById('tela-login').classList.remove('hidden');
+            }
+        }
+
+        function renderizarRanking() {
+            const lista = document.getElementById('lista-ranking');
+            const db = carregarDB();
+            
+            const usuariosOrdenados = [...db.usuarios].sort((a, b) => (b.moedas || 0) - (a.moedas || 0));
+
+            if (usuariosOrdenados.length === 0) {
+                lista.innerHTML = `
+                    <div class="ranking-vazio">
+                        <span class="icone">🏆</span>
+                        Nenhum jogador cadastrado ainda.<br>
+                        Seja o primeiro a jogar!
+                    </div>
+                `;
+                return;
+            }
+
+            lista.innerHTML = '';
+            usuariosOrdenados.forEach((user, index) => {
+                const pos = index + 1;
+                const item = document.createElement('div');
+                item.className = 'ranking-item';
+                if (pos <= 3) item.classList.add(`pos-${pos}`);
+                
+                const ehUsuarioAtual = usuarioAtual && user.nickname === usuarioAtual.nickname;
+                if (ehUsuarioAtual) item.classList.add('eu');
+
+                let medalha = '';
+                if (pos === 1) medalha = '🥇';
+                else if (pos === 2) medalha = '🥈';
+                else if (pos === 3) medalha = '🥉';
+
+                const badgeVoce = ehUsuarioAtual ? '<span class="voce-badge">VOCÊ</span>' : '';
+
+                item.innerHTML = `
+                    <div class="ranking-pos">${medalha || pos}</div>
+                    <div class="ranking-info">
+                        <div class="ranking-nick">
+                            ${user.nickname} ${badgeVoce}
+                        </div>
+                        <div class="ranking-detalhes">
+                            ${(user.apostas || []).length} apostas feitas
+                        </div>
+                    </div>
+                    <div class="ranking-moedas">
+                        🪙 ${user.moedas || 0}
+                    </div>
+                `;
+                lista.appendChild(item);
+            });
+        }
+
+        // ===== SOBRE =====
+        function mostrarSobre() {
+            somClique();
+            document.getElementById('tela-login').classList.add('hidden');
+            document.getElementById('tela-registro').classList.add('hidden');
+            document.getElementById('tela-jogo').classList.add('hidden');
+            document.getElementById('tela-ranking').classList.add('hidden');
+            document.getElementById('tela-recuperar').classList.add('hidden');
+            document.getElementById('tela-link-email').classList.add('hidden');
+            document.getElementById('tela-nova-senha').classList.add('hidden');
+            document.getElementById('tela-sobre').classList.remove('hidden');
+        }
+
+        function fecharSobre() {
+            somClique();
+            document.getElementById('tela-sobre').classList.add('hidden');
+            
+            if (usuarioAtual) {
+                document.getElementById('tela-jogo').classList.remove('hidden');
+            } else {
+                document.getElementById('tela-login').classList.remove('hidden');
+            }
+        }
+
+        // ===== VITRINE E APOSTAS =====
         function renderizarVitrine() {
             const vitrine = document.getElementById('vitrine');
             vitrine.innerHTML = "";
@@ -1262,8 +3080,13 @@
             }
         }
 
-        // ===== SELECIONAR BICHO =====
         function selecionarBicho(numero) {
+            const check = podeApostar();
+            if (!check.pode) {
+                alert("⚠️ " + check.motivo);
+                return;
+            }
+
             somClique();
             bichoSelecionado = numero;
             milharSelecionada = null;
@@ -1275,6 +3098,8 @@
                 <span class="nome-bicho">${bicho.nome} (Grupo ${numero.toString().padStart(2, '0')})</span>
             `;
 
+            atualizarPremiosBotoes();
+
             document.getElementById('opcao-bicho').classList.add('ativo');
             document.getElementById('opcao-bicho-milhar').classList.remove('ativo');
             document.getElementById('area-milhar').classList.add('hidden');
@@ -1284,6 +3109,15 @@
 
             document.getElementById('etapa-escolha').classList.add('hidden');
             document.getElementById('etapa-milhar').classList.remove('hidden');
+        }
+
+        function atualizarPremiosBotoes() {
+            const turno = getTurnoAtual();
+            if (!turno) return;
+            const premios = TURNOS[turno].premios;
+            
+            document.getElementById('premio-bicho-txt').innerText = `Ganha +${premios.bicho} 🪙`;
+            document.getElementById('premio-milhar-txt').innerText = `+${premios.milhar} a +${premios.bichoMilhar} 🪙`;
         }
 
         function escolherModo(modo) {
@@ -1341,17 +3175,21 @@
         function mostrarConfirmacao() {
             const bicho = animais[bichoSelecionado];
             const temMilhar = milharSelecionada !== null;
+            const turno = getTurnoAtual();
+            const turnoInfo = TURNOS[turno];
 
             let infoMilhar = "";
             if (temMilhar) {
                 infoMilhar = `
                     <p>Milhar: <strong style="font-size: 22px; color: #e67e22; letter-spacing: 3px;">${milharSelecionada}</strong></p>
-                    <p style="font-size: 13px; color: #27ae60; font-weight: 600;">💰 Prêmio: ${RECOMPENSA_BICHO_MILHAR} moedas se acertar os dois</p>
+                    <p style="font-size: 13px; color: #27ae60; font-weight: 600;">
+                        💰 Prêmios: Milhar +${turnoInfo.premios.milhar} 🪙 | B+M +${turnoInfo.premios.bichoMilhar} 🪙
+                    </p>
                 `;
             } else {
                 infoMilhar = `
                     <p style="color: #9b59b6; font-weight: bold;">🎯 Aposta apenas no Bicho</p>
-                    <p style="font-size: 13px; color: #27ae60; font-weight: 600;">💰 Prêmio: ${RECOMPENSA_BICHO} moedas se acertar o bicho</p>
+                    <p style="font-size: 13px; color: #27ae60; font-weight: 600;">💰 Prêmio: ${turnoInfo.premios.bicho} moedas</p>
                 `;
             }
 
@@ -1361,10 +3199,13 @@
                 <p style="font-size: 50px; margin: 5px 0;">${bicho.emoji}</p>
                 <p><strong>${bicho.nome}</strong> (Grupo ${bichoSelecionado.toString().padStart(2, '0')})</p>
                 ${infoMilhar}
+                <p style="font-size: 12px; color: #3498db; margin-top: 15px; font-weight: 700;">
+                    ${turnoInfo.emoji} Sorteio do turno ${turnoInfo.nome} às ${turnoInfo.horaResultado}
+                </p>
             `;
 
             document.getElementById('etapa-milhar').classList.add('hidden');
-            document.getElementById('etapa-sorteio').classList.remove('hidden');
+            document.getElementById('etapa-confirmacao').classList.remove('hidden');
         }
 
         function voltarEscolhaBicho() {
@@ -1375,152 +3216,65 @@
             milharSelecionada = null;
         }
 
-        // ===== SORTEIO =====
-        function iniciarSorteio() {
-            somClique();
-            document.getElementById('etapa-sorteio').classList.add('hidden');
-            document.getElementById('etapa-sorteio-animado').classList.remove('hidden');
+        function confirmarAposta() {
+            const check = podeApostar();
+            if (!check.pode) {
+                alert("⚠️ " + check.motivo);
+                fazerOutraAposta();
+                return;
+            }
 
-            const slotBicho = document.getElementById('slot-bicho');
-            const slotMilhar = document.getElementById('slot-milhar');
-            const duracao = 2500;
-            const intervalo = 80;
-            const inicio = Date.now();
+            const checkDup = verificarApostaDuplicada(bichoSelecionado, milharSelecionada);
+            if (checkDup.duplicada) {
+                alert("🚫 Aposta Repetida!\n\n" + checkDup.motivo + "\n\nEscolha outro bicho ou outra milhar.");
+                fazerOutraAposta();
+                return;
+            }
 
-            const bichoSorteado = Math.floor(Math.random() * 25) + 1;
-            const milharSorteada = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-
-            const anim = setInterval(() => {
-                slotBicho.innerText = (Math.floor(Math.random() * 25) + 1).toString().padStart(2, '0');
-                slotMilhar.innerText = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-                somTick();
-
-                if (Date.now() - inicio >= duracao) {
-                    clearInterval(anim);
-                    slotBicho.classList.remove('rolling');
-                    slotMilhar.classList.remove('rolling');
-                    slotBicho.innerText = bichoSorteado.toString().padStart(2, '0');
-                    slotMilhar.innerText = milharSorteada;
-
-                    setTimeout(() => {
-                        mostrarResultadoFinal(bichoSorteado, milharSorteada);
-                    }, 600);
-                }
-            }, intervalo);
-        }
-
-        function mostrarResultadoFinal(bichoSorteado, milharSorteada) {
+            const turno = getTurnoAtual();
+            const dataHoje = getDataHoje();
             const bicho = animais[bichoSelecionado];
-            const bichoSorteadoObj = animais[bichoSorteado];
 
-            // ===== VERIFICAÇÃO DE VITÓRIA =====
-            const acertouBicho = (bichoSelecionado === bichoSorteado);
-            const acertouMilhar = milharSelecionada !== null && (milharSelecionada === milharSorteada);
-            
-            let ganhou = false;
-            let recompensa = 0;
-            let tipoVitoria = "";
-
-            if (milharSelecionada === null) {
-                // Apostou só no bicho
-                if (acertouBicho) {
-                    ganhou = true;
-                    recompensa = RECOMPENSA_BICHO;
-                    tipoVitoria = "bicho";
-                }
-            } else {
-                // Apostou bicho + milhar
-                if (acertouBicho && acertouMilhar) {
-                    ganhou = true;
-                    recompensa = RECOMPENSA_BICHO_MILHAR;
-                    tipoVitoria = "bicho-milhar";
-                }
-            }
-
-            // ===== CARD DE RESULTADO =====
-            const cardResultado = document.getElementById('card-resultado');
-            cardResultado.classList.remove('ganhou', 'perdeu');
-            cardResultado.classList.add(ganhou ? 'ganhou' : 'perdeu');
-
-            // Bicho sorteado visual (bonito, com emoji grande)
-            document.getElementById('visual-bicho-sorteado').innerHTML = `
-                <span class="emoji-grande">${bichoSorteadoObj.emoji}</span>
-                <span class="nome">${bichoSorteadoObj.nome}</span>
-                <span class="numero">Grupo ${bichoSorteado.toString().padStart(2, '0')}</span>
-            `;
-
-            document.getElementById('resultado-milhar').innerText = milharSorteada;
-
-            // Texto do resultado
-            const textoResultado = document.getElementById('texto-ganhou-perdeu');
-            const recompensaContainer = document.getElementById('recompensa-container');
-            recompensaContainer.innerHTML = "";
-
-            if (ganhou) {
-                if (tipoVitoria === "bicho-milhar") {
-                    textoResultado.innerHTML = `🎉 INCRÍVEL, ${nomeUsuario}! Você acertou TUDO! 🎉`;
-                } else {
-                    textoResultado.innerHTML = `🎉 PARABÉNS, ${nomeUsuario}! Você acertou o bicho! 🎉`;
-                }
-                
-                // Adiciona recompensa
-                recompensaContainer.innerHTML = `
-                    <div class="recompensa-moedas">
-                        <span class="emoji">🪙</span>
-                        <span>+${recompensa} moedas!</span>
-                        <span class="emoji">💰</span>
-                    </div>
-                `;
-
-                // Efeitos
-                somVitoria();
-                setTimeout(() => somMoeda(), 500);
-                chuvaDeEmojis();
-                atualizarMoedas(recompensa);
-
-            } else {
-                let explicacao = "";
-                if (milharSelecionada === null) {
-                    explicacao = `Você apostou no bicho ${bichoSelecionado.toString().padStart(2, '0')}, saiu ${bichoSorteado.toString().padStart(2, '0')}.`;
-                } else {
-                    explicacao = `Você apostou em ${bichoSelecionado.toString().padStart(2, '0')} + ${milharSelecionada}, saiu ${bichoSorteado.toString().padStart(2, '0')} + ${milharSorteada}.`;
-                }
-                textoResultado.innerHTML = `😢 Que pena, você não ganhou.<br><span style="font-size: 14px; color: #666;">${explicacao}</span>`;
-                somDerrota();
-            }
-
-            // Histórico
-            historico.push({
+            const novaAposta = {
+                id: Date.now() + Math.random(),
                 bichoNum: bichoSelecionado,
                 bichoNome: bicho.nome,
                 bichoEmoji: bicho.emoji,
                 milhar: milharSelecionada,
-                bichoSorteado: bichoSorteado,
-                bichoSorteadoEmoji: bichoSorteadoObj.emoji,
-                bichoSorteadoNome: bichoSorteadoObj.nome,
-                milharSorteada: milharSorteada,
-                ganhou: ganhou,
-                recompensa: recompensa
-            });
+                turno: turno,
+                data: dataHoje,
+                dataHora: new Date().toISOString(),
+                status: 'pendente',
+                recompensa: 0,
+                bichoSorteado: null,
+                milharSorteada: null
+            };
 
-            document.getElementById('etapa-sorteio-animado').classList.add('hidden');
-            document.getElementById('etapa-resultado').classList.remove('hidden');
+            apostas.push(novaAposta);
+            salvarDadosUsuario();
+            somClique();
+
+            const turnoInfo = TURNOS[turno];
+            document.getElementById('horario-sorteio-aposta').innerText = 
+                `${turnoInfo.emoji} ${turnoInfo.nome} - ${turnoInfo.horaResultado}`;
+
+            document.getElementById('etapa-confirmacao').classList.add('hidden');
+            document.getElementById('etapa-aposta-registrada').classList.remove('hidden');
+            
+            atualizarContador();
         }
 
-        // ===== NOVA APOSTA =====
         function fazerOutraAposta() {
             somClique();
             bichoSelecionado = null;
             milharSelecionada = null;
             modoAposta = "bicho";
 
-            document.getElementById('etapa-sorteio').classList.add('hidden');
-            document.getElementById('etapa-sorteio-animado').classList.add('hidden');
-            document.getElementById('etapa-resultado').classList.add('hidden');
+            document.getElementById('etapa-milhar').classList.add('hidden');
+            document.getElementById('etapa-confirmacao').classList.add('hidden');
+            document.getElementById('etapa-aposta-registrada').classList.add('hidden');
             document.getElementById('etapa-escolha').classList.remove('hidden');
-
-            document.getElementById('slot-bicho').classList.add('rolling');
-            document.getElementById('slot-milhar').classList.add('rolling');
+            atualizarContador();
         }
 
         // ===== PAINEL DE APOSTAS =====
@@ -1528,6 +3282,7 @@
             somClique();
             document.getElementById('painel-apostas').classList.remove('hidden');
             document.getElementById('conteudo-principal').classList.add('hidden');
+            document.getElementById('tela-ranking').classList.add('hidden');
             renderizarPainelApostas();
         }
 
@@ -1537,15 +3292,34 @@
             document.getElementById('conteudo-principal').classList.remove('hidden');
         }
 
+        function mudarAba(aba) {
+            somClique();
+            const abaApostas = document.getElementById('aba-apostas');
+            const abaSorteios = document.getElementById('aba-sorteios');
+            const conteudoApostas = document.getElementById('conteudo-apostas');
+            const conteudoSorteios = document.getElementById('conteudo-sorteios');
+
+            if (aba === 'apostas') {
+                abaApostas.classList.add('ativa');
+                abaSorteios.classList.remove('ativa');
+                conteudoApostas.classList.remove('hidden');
+                conteudoSorteios.classList.add('hidden');
+            } else {
+                abaApostas.classList.remove('ativa');
+                abaSorteios.classList.add('ativa');
+                conteudoApostas.classList.add('hidden');
+                conteudoSorteios.classList.remove('hidden');
+                renderizarSorteios();
+            }
+        }
+
         function renderizarPainelApostas() {
             const estatisticas = document.getElementById('estatisticas');
             const lista = document.getElementById('lista-apostas');
 
-            const total = historico.length;
-            const vitorias = historico.filter(a => a.ganhou).length;
-            const derrotas = total - vitorias;
-            const taxa = total > 0 ? Math.round((vitorias / total) * 100) : 0;
-            const moedasGanhas = historico.reduce((sum, a) => sum + (a.recompensa || 0), 0);
+            const total = apostas.length;
+            const vitorias = apostas.filter(a => a.status === 'ganhou').length;
+            const derrotas = apostas.filter(a => a.status === 'perdeu').length;
 
             estatisticas.innerHTML = `
                 <div class="stat-card">
@@ -1561,7 +3335,7 @@
                     <span class="label">Derrotas</span>
                 </div>
                 <div class="stat-card moedas-stat">
-                    <span class="valor">🪙 ${moedasGanhas}</span>
+                    <span class="valor">🪙 ${usuarioAtual.moedas}</span>
                     <span class="label">Moedas</span>
                 </div>
             `;
@@ -1578,87 +3352,153 @@
             }
 
             lista.innerHTML = "";
-            const apostasOrdenadas = [...historico].reverse();
+            const apostasOrdenadas = [...apostas].reverse();
             apostasOrdenadas.forEach((aposta) => {
                 const item = document.createElement('div');
-                item.className = `aposta-item ${aposta.ganhou ? 'ganhou' : 'perdeu'}`;
+                item.className = `aposta-item ${aposta.status}`;
                 
-                const badge = aposta.ganhou 
-                    ? '<span class="badge badge-ganhou">GANHOU</span>' 
-                    : '<span class="badge badge-perdeu">perdeu</span>';
+                let badge = '';
+                if (aposta.status === 'ganhou') badge = '<span class="badge badge-ganhou">GANHOU</span>';
+                else if (aposta.status === 'perdeu') badge = '<span class="badge badge-perdeu">perdeu</span>';
+                else badge = '<span class="badge badge-pendente">⏳ AGUARDANDO</span>';
 
-                const badgeMoedas = aposta.ganhou && aposta.recompensa
-                    ? `<span class="badge badge-moedas">+${aposta.recompensa} 🪙</span>`
-                    : '';
+                const badgeMoedas = aposta.status === 'ganhou' && aposta.recompensa
+                    ? `<span class="badge badge-moedas">+${aposta.recompensa} 🪙</span>` : '';
 
-                const milharTexto = aposta.milhar 
-                    ? `Milhar: <strong>${aposta.milhar}</strong> | Sorteado: <strong>${aposta.bichoSorteado.toString().padStart(2,'0')} + ${aposta.milharSorteada}</strong>`
-                    : `Sorteado: <strong>${aposta.bichoSorteado.toString().padStart(2,'0')}</strong> (só bicho)`;
+                const turnoInfo = TURNOS[aposta.turno] || { nome: '?', emoji: '❓' };
+                const badgeTurno = `<span class="badge badge-turno">${turnoInfo.emoji} ${turnoInfo.nome}</span>`;
+
+                let detalhes = '';
+                if (aposta.status === 'pendente') {
+                    detalhes = `
+                        <strong>${aposta.bichoNome}</strong> (Grupo ${aposta.bichoNum.toString().padStart(2, '0')})<br>
+                        ${aposta.milhar ? `Milhar: <strong>${aposta.milhar}</strong>` : 'Só bicho'}
+                        ${badge} ${badgeTurno}
+                    `;
+                } else {
+                    let tipoTexto = '';
+                    if (aposta.tipoVitoria === 'milhar') tipoTexto = ' (só milhar!)';
+                    else if (aposta.tipoVitoria === 'bicho-milhar') tipoTexto = ' (bicho + milhar!)';
+                    else if (aposta.tipoVitoria === 'bicho') tipoTexto = ' (bicho!)';
+
+                    const milharTexto = aposta.milhar 
+                        ? `Milhar: <strong>${aposta.milhar}</strong> | Sorteado: <strong>${aposta.bichoSorteado.toString().padStart(2,'0')} + ${aposta.milharSorteada}</strong>`
+                        : `Sorteado: <strong>${aposta.bichoSorteado.toString().padStart(2,'0')}</strong> (só bicho)`;
+                    detalhes = `
+                        <strong>${aposta.bichoNome}</strong> (Grupo ${aposta.bichoNum.toString().padStart(2, '0')})<br>
+                        ${milharTexto}${tipoTexto} ${badge} ${badgeMoedas} ${badgeTurno}
+                    `;
+                }
 
                 item.innerHTML = `
                     <div class="aposta-info">
                         <span class="emoji-grande">${aposta.bichoEmoji}</span>
-                        <div class="detalhes">
-                            <strong>${aposta.bichoNome}</strong> (Grupo ${aposta.bichoNum.toString().padStart(2, '0')})<br>
-                            ${milharTexto}
-                            ${badge} ${badgeMoedas}
-                        </div>
+                        <div class="detalhes">${detalhes}</div>
                     </div>
-                    <button class="gold small" onclick="repetirAposta(${aposta.bichoNum}, ${aposta.milhar ? `'${aposta.milhar}'` : 'null'})">🔁 Jogar de novo</button>
                 `;
                 lista.appendChild(item);
             });
         }
 
-        function repetirAposta(bichoNum, milhar) {
-            somClique();
-            fecharPainelApostas();
-            bichoSelecionado = bichoNum;
-            if (milhar) {
-                milharSelecionada = milhar;
-                modoAposta = "bicho-milhar";
-            } else {
-                milharSelecionada = null;
-                modoAposta = "bicho";
+        function renderizarSorteios() {
+            const lista = document.getElementById('lista-sorteios');
+            
+            if (sorteios.length === 0) {
+                lista.innerHTML = `
+                    <div class="sem-apostas">
+                        <span class="icone">🎰</span>
+                        Nenhum sorteio realizado ainda.<br>
+                        Resultados saem às 12h, 17h e 20h.
+                    </div>
+                `;
+                return;
             }
-            mostrarConfirmacao();
-        }
 
-        // ===== REINICIAR =====
-        function reiniciarTudo() {
-            nomeUsuario = "";
-            historico = [];
-            bichoSelecionado = null;
-            milharSelecionada = null;
-            modoAposta = "bicho";
-            moedas = 0;
+            lista.innerHTML = "";
+            const ordenados = [...sorteios].reverse();
+            ordenados.forEach(sorteio => {
+                const item = document.createElement('div');
+                item.className = 'sorteio-registro';
 
-            document.getElementById('input-nome').value = "";
-            document.getElementById('moedas-total').innerText = "0";
-            document.getElementById('tela-fim').classList.add('hidden');
-            document.getElementById('tela-jogo').classList.add('hidden');
-            document.getElementById('tela-nome').classList.remove('hidden');
+                const turnoInfo = TURNOS[sorteio.turno] || { nome: '?', emoji: '❓' };
+                const dataFormatada = new Date(sorteio.dataHora).toLocaleString('pt-BR', {
+                    day: '2-digit', month: '2-digit', year: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
 
-            document.getElementById('etapa-escolha').classList.remove('hidden');
-            document.getElementById('etapa-milhar').classList.add('hidden');
-            document.getElementById('etapa-sorteio').classList.add('hidden');
-            document.getElementById('etapa-sorteio-animado').classList.add('hidden');
-            document.getElementById('etapa-resultado').classList.add('hidden');
-            document.getElementById('painel-apostas').classList.add('hidden');
-            document.getElementById('conteudo-principal').classList.remove('hidden');
+                if (sorteio.semApostas) {
+                    item.innerHTML = `
+                        <div class="sorteio-header">
+                            <span class="sorteio-turno ${sorteio.turno}">${turnoInfo.emoji} ${turnoInfo.nome}</span>
+                            <span class="sorteio-data">${dataFormatada}</span>
+                        </div>
+                        <div class="sorteio-resultado">
+                            <span style="color: #999; font-style: italic;">Nenhuma aposta neste turno</span>
+                        </div>
+                    `;
+                } else {
+                    item.innerHTML = `
+                        <div class="sorteio-header">
+                            <span class="sorteio-turno ${sorteio.turno}">${turnoInfo.emoji} ${turnoInfo.nome}</span>
+                            <span class="sorteio-data">${dataFormatada}</span>
+                        </div>
+                        <div class="sorteio-resultado">
+                            <span class="emoji-bicho">${sorteio.bichoEmoji}</span>
+                            <div>
+                                <strong>${sorteio.bichoNome}</strong> - Grupo ${sorteio.bicho.toString().padStart(2, '0')}<br>
+                                Milhar: <strong>${sorteio.milhar}</strong>
+                            </div>
+                        </div>
+                    `;
+                }
+                lista.appendChild(item);
+            });
         }
 
         // ===== EVENTOS =====
-        document.getElementById('input-nome').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') salvarNome();
+        document.getElementById('login-senha').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') fazerLogin();
+        });
+        document.getElementById('login-nickname').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') document.getElementById('login-senha').focus();
+        });
+        document.getElementById('registro-senha').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') fazerRegistro();
+        });
+        document.getElementById('registro-nickname').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') document.getElementById('registro-email').focus();
+        });
+        document.getElementById('registro-email').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') document.getElementById('registro-senha').focus();
+        });
+        document.getElementById('recuperar-email').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') enviarLinkRecuperacao();
+        });
+        document.getElementById('nova-senha').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') document.getElementById('confirmar-nova-senha').focus();
+        });
+        document.getElementById('confirmar-nova-senha').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') salvarNovaSenha();
         });
 
-        document.getElementById('input-milhar-manual').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') confirmarMilharManual();
+        // Só permite números na senha
+        document.getElementById('login-senha').addEventListener('input', function (e) {
+            this.value = this.value.replace(/\D/g, '').slice(0, 8);
         });
-
+        document.getElementById('registro-senha').addEventListener('input', function (e) {
+            this.value = this.value.replace(/\D/g, '').slice(0, 8);
+        });
+        document.getElementById('nova-senha').addEventListener('input', function (e) {
+            this.value = this.value.replace(/\D/g, '').slice(0, 8);
+        });
+        document.getElementById('confirmar-nova-senha').addEventListener('input', function (e) {
+            this.value = this.value.replace(/\D/g, '').slice(0, 8);
+        });
         document.getElementById('input-milhar-manual').addEventListener('input', function (e) {
             this.value = this.value.replace(/\D/g, '').slice(0, 4);
+        });
+        document.getElementById('input-milhar-manual').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') confirmarMilharManual();
         });
     </script>
 </body>
